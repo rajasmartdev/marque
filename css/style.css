@@ -13812,6 +13812,7 @@ p.slider-teaser{
 .swiper-button-next, .swiper-button-prev{
   color:var(--primary-color);
   width: 60px;
+  background: #fff;
 }
 
 .swiper-button-next:after, .swiper-button-prev:after{
