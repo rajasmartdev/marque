@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Marque Club - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            background: #000000;
+            color: #ffffff;
+            overflow: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Geometric pattern background */
+        .geometric-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0.15;
+        }
+
+        .hex {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #c5a458;
+            animation: hexFloat 25s infinite ease-in-out;
+        }
+
+        .hex:nth-child(1) {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            left: 5%;
+            top: 10%;
+            animation-delay: 0s;
+        }
+
+        .hex:nth-child(2) {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            right: 10%;
+            top: 20%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 5s;
+        }
+
+        .hex:nth-child(3) {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            left: 60%;
+            bottom: 15%;
+            width: 180px;
+            height: 180px;
+            animation-delay: 10s;
+        }
+
+        .hex:nth-child(4) {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            left: 15%;
+            bottom: 25%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 3s;
+        }
+
+        @keyframes hexFloat {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.15;
+            }
+            25% {
+                transform: translate(30px, -40px) rotate(90deg);
+                opacity: 0.25;
+            }
+            50% {
+                transform: translate(-20px, 30px) rotate(180deg);
+                opacity: 0.2;
+            }
+            75% {
+                transform: translate(40px, 20px) rotate(270deg);
+                opacity: 0.3;
+            }
+        }
+
+        /* Spotlight effect */
+        .spotlight {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, 
+                transparent 0%, 
+                rgba(197, 164, 88, 0.05) 30%, 
+                transparent 70%);
+            animation: spotlightPulse 10s infinite ease-in-out;
+        }
+
+        @keyframes spotlightPulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+
+        /* Diagonal golden lines */
+        .diagonal-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c5a458, transparent);
+            animation: lineSlide 15s infinite ease-in-out;
+        }
+
+        .line:nth-child(1) {
+            width: 60%;
+            top: 20%;
+            left: -60%;
+            animation-delay: 0s;
+        }
+
+        .line:nth-child(2) {
+            width: 70%;
+            top: 50%;
+            right: -70%;
+            animation-delay: 5s;
+        }
+
+        .line:nth-child(3) {
+            width: 50%;
+            top: 75%;
+            left: -50%;
+            animation-delay: 10s;
+        }
+
+        @keyframes lineSlide {
+            0% { transform: translateX(0); opacity: 0; }
+            20% { opacity: 0.4; }
+            80% { opacity: 0.4; }
+            100% { transform: translateX(200vw); opacity: 0; }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* Ornamental frame */
+        .frame {
+            position: relative;
+            padding: 60px 60px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .frame::before,
+        .frame::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid #c5a458;
+        }
+
+        .frame::before {
+            top: 0;
+            left: 0;
+            border-right: none;
+            border-bottom: none;
+            animation: cornerGrow 1.5s ease-out 0.5s both;
+        }
+
+        .frame::after {
+            bottom: 0;
+            right: 0;
+            border-left: none;
+            border-top: none;
+            animation: cornerGrow 1.5s ease-out 0.7s both;
+        }
+
+        @keyframes cornerGrow {
+            from {
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100px;
+                height: 100px;
+                opacity: 1;
+            }
+        }
+
+        /* Logo section */
+        .logo-wrapper {
+            position: relative;
+            margin-bottom: 20px;
+            animation: logoEntrance 2s ease-out 0.3s both;
+        }
+
+        .logo-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(197, 164, 88, 0.3) 0%, transparent 70%);
+            animation: glowPulse 4s infinite ease-in-out;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.5; }
+        }
+
+        .logo {
+            position: relative;
+            max-width: 180px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 40px rgba(197, 164, 88, 0.5));
+            z-index: 2;
+        }
+
+        @keyframes logoEntrance {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Ornamental divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 25px 0;
+            width: 100%;
+            animation: fadeInScale 2s ease-out 1s both;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c5a458, transparent);
+        }
+
+        .divider-diamond {
+            width: 12px;
+            height: 12px;
+            background: #c5a458;
+            transform: rotate(45deg);
+            margin: 0 20px;
+            box-shadow: 0 0 20px rgba(197, 164, 88, 0.6);
+        }
+
+        /* Text content */
+        .coming-soon {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            letter-spacing: 20px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #c5a458 50%, #ffffff 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShimmer 8s infinite, fadeInUp 2s ease-out 1.2s both;
+        }
+
+        @keyframes textShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .tagline {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            color: #c5a458;
+            letter-spacing: 6px;
+            line-height: 1.8;
+            font-style: italic;
+            animation: fadeInUp 2s ease-out 1.5s both;
+            text-shadow: 0 0 30px rgba(197, 164, 88, 0.3);
+        }
+
+        /* Floating elements */
+        .float-element {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #c5a458;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(197, 164, 88, 0.8);
+        }
+
+        .float-element:nth-child(1) {
+            top: 20%;
+            left: 15%;
+            animation: floatRandom 8s infinite ease-in-out;
+        }
+
+        .float-element:nth-child(2) {
+            top: 60%;
+            right: 20%;
+            animation: floatRandom 10s infinite ease-in-out 2s;
+        }
+
+        .float-element:nth-child(3) {
+            bottom: 25%;
+            left: 25%;
+            animation: floatRandom 12s infinite ease-in-out 4s;
+        }
+
+        .float-element:nth-child(4) {
+            top: 40%;
+            right: 15%;
+            animation: floatRandom 9s infinite ease-in-out 1s;
+        }
+
+        @keyframes floatRandom {
+            0%, 100% { 
+                transform: translate(0, 0); 
+                opacity: 0.3; 
+            }
+            25% { 
+                transform: translate(40px, -30px); 
+                opacity: 0.8; 
+            }
+            50% { 
+                transform: translate(-30px, 40px); 
+                opacity: 0.5; 
+            }
+            75% { 
+                transform: translate(30px, 30px); 
+                opacity: 0.7; 
+            }
+        }
+
+        /* Bottom ornament */
+        .bottom-ornament {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: rgba(197, 164, 88, 0.5);
+            animation: fadeIn 2s ease-out 2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .frame {
+                padding: 60px 30px;
+            }
+
+            .frame::before,
+            .frame::after {
+                width: 60px;
+                height: 60px;
+            }
+
+            .logo {
+                max-width: 300px;
+            }
+
+            .coming-soon {
+                letter-spacing: 10px;
+            }
+
+            .tagline {
+                letter-spacing: 3px;
+            }
+
+            .divider-diamond {
+                margin: 0 15px;
+            }
+
+            .logo-glow {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .frame {
+                padding: 40px 20px;
+            }
+
+            .frame::before,
+            .frame::after {
+                width: 40px;
+                height: 40px;
+            }
+
+            .coming-soon {
+                letter-spacing: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background elements -->
+    <div class="geometric-bg">
+        <div class="hex"></div>
+        <div class="hex"></div>
+        <div class="hex"></div>
+        <div class="hex"></div>
+    </div>
+
+    <div class="spotlight"></div>
+
+    <div class="diagonal-lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+
+    <!-- Floating particles -->
+    <div class="float-element"></div>
+    <div class="float-element"></div>
+    <div class="float-element"></div>
+    <div class="float-element"></div>
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="frame">
+            <!-- Logo -->
+            <div class="logo-wrapper">
+                <div class="logo-glow"></div>
+                <img src="images/The Marque Final Logo.png" alt="The Marque Club" class="logo">
+            </div>
+
+            <!-- Divider -->
+            <div class="divider">
+                <div class="divider-line"></div>
+                <div class="divider-diamond"></div>
+                <div class="divider-line"></div>
+            </div>
+
+            <!-- Coming Soon text -->
+            <h1 class="coming-soon">Coming Soon</h1>
+
+            <!-- Tagline -->
+            <p class="tagline">Luxury for the Few</p>
+        </div>
+
+        <!-- Bottom ornament -->
+        <!-- <div class="bottom-ornament">— MMXXV —</div> -->
+    </div>
+</body>
+</html>
