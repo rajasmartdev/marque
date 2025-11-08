@@ -13487,6 +13487,11 @@ body {
     margin-top: 30px;
   }
 
+  .jarallax h4{
+    font-size: 14px;
+    font-weight: 400;
+  }
+
   #main{
     width: 100%;
   }
