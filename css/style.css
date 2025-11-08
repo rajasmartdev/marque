@@ -13740,8 +13740,8 @@ p.slider-teaser{
 .sw-text-wrapper {
   display: inline-block;
   padding: 25px 35px;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(6px);
+  /* background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px); */
   border-radius: 10px;
 }
 
