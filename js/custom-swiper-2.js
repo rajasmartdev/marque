@@ -1,4 +1,8 @@
 const swiper = new Swiper('.swiper', {
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false
+  },
   direction: 'horizontal',
   loop: true,
   speed: 1200,
@@ -7,7 +11,8 @@ const swiper = new Swiper('.swiper', {
 
   pagination: {
     el: ".swiper-pagination",
-    type: "fraction",
+    type: "bullets",
+    clickable: true
   },
 
   navigation: {
