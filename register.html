@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -20,6 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- color scheme -->
     <link id="colors" href="css/color-scheme.css" rel="stylesheet" type="text/css" >
+
 
 </head>
 
@@ -83,13 +83,13 @@
                 <div class="container relative z-index-1000">
                     <div class="row justify-content-center">
                         <div class="col-lg-6 text-center">
-                            <h1>Contact Us</h1>
+                            <h1>Register</h1>
                             <p class="lead mt-3">
                                Begin Your Journey
                             </p>
                             <ul class="crumb">
                                 <li><a href="index.html">Home</a></li>
-                                <li class="active">Contact Us</li>
+                                <li class="active">Register</li>
                             </ul>
                         </div>
                     </div>
@@ -97,164 +97,87 @@
                 <div class="de-overlay"></div>
             </section>
 
-             <section class="newctn-section">
-        <div class="newctn-container">
-            <div class="newctn-grid">
-                <!-- Founding Membership -->
-                <div class="newctn-card ">
-                    <div class="newctn-card-icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <h3 class="newctn-card-title">Founding Membership Enquiries</h3>
-                    <p class="newctn-card-description">
-                        For confidential membership discussions:
-                    </p>
-                    <div class="newctn-card-info">
-                        <a href="mailto:membership@themarqueclub.com" class="newctn-card-link">
-                            <i class="fas fa-envelope"></i>
-                            membership@themarqueclub.com
-                        </a>
-                        <a href="tel:+91" class="newctn-card-link">
-                            <i class="fas fa-phone"></i>
-                            +91 [Phone Number]
-                        </a>
-                    </div>
-                    
-                </div>
-
-                <!-- General Enquiries -->
-                <div class="newctn-card">
-                    <div class="newctn-card-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3 class="newctn-card-title">General Enquiries</h3>
-                    <p class="newctn-card-description">
-                        For other questions:
-                    </p>
-                    <div class="newctn-card-info">
-                        <a href="mailto:contact@themarqueclub.com" class="newctn-card-link">
-                            <i class="fas fa-envelope"></i>
-                            contact@themarqueclub.com
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Partnerships & Events -->
-                <div class="newctn-card ">
-                    <div class="newctn-card-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3 class="newctn-card-title">Partnerships & Events</h3>
-                    <p class="newctn-card-description">
-                        For corporate partnerships and private events:
-                    </p>
-                    <div class="newctn-card-info">
-                        <a href="mailto:partnerships@themarqueclub.com" class="newctn-card-link">
-                            <i class="fas fa-envelope"></i>
-                            partnerships@themarqueclub.com
-                        </a>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="newctn-card-note text-center">
-                        All enquiries are handled with complete discretion.
-                    </div>
-            <div class="newctn-divider"></div>
-
-            <!-- Office Address -->
-            <div class="newctn-map-section">
-                <div class="newctn-map-card">
-                    <div class="newctn-map-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3 class="newctn-map-title">Office Address</h3>
-                    <p class="newctn-map-text">
-                        <span class="newctn-map-highlight">To be announced to Founding Members</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-            <section class="relative lines-deco">
+            <!-- Registration Form Section -->
+            <section class="reg-form-section">
                 <div class="container">
-                    <div class="row g-4 justify-content-center">
-
-                        <div class="col-lg-7">
-                            
-                            <form name="contactForm" id="contact_form" class="position-relative z1000" method="post" action="contact.php">
-                                <div id="contact_form_wrap" class="row gx-4">
-                                    <div class="col-lg-12">
-                                        <div class="text-center">
-                                            <h3 class="mb-4">Write a Message</h3>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 mb10">
-                                        <div class="field-set">
-                                            <input type="text" name="name" id="name" class="form-control" placeholder="Your Name" required>
-                                        </div>
-
-                                        <div class="field-set">
-                                            <input type="text" name="email" id="email" class="form-control" placeholder="Your Email" required>
-                                        </div>
-
-                                        <div class="field-set">
-                                            <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone" required>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="field-set mb20">
-                                            <textarea name="message" id="message" class="form-control" placeholder="Your Message" required></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12">
-                                        <div class="text-center">
-                                            <input type='submit' id='send_message' value='Send Message' class="btn-main">
-                                        </div>
-                                    </div>
-                                </div>
-                                
-
-                                <div id="success_message" class='success'>
-                                    Your message has been sent successfully. Refresh this page if you want to send more messages.
-                                </div>
-                                <div id="error_message" class='error'>
-                                    Sorry there was an error sending your form.
-                                </div>
-                            </form>
-
-                        </div>
+                    <div class="reg-form-container">
+                        <h2 class="reg-form-title">Register your Interest</h2>
                         
+                        <div class="reg-form-row">
+                            <div class="reg-form-group">
+                                <label class="reg-form-label">First Name*</label>
+                                <input type="text" class="reg-form-input" required>
+                            </div>
+                            <div class="reg-form-group">
+                                <label class="reg-form-label">Last Name*</label>
+                                <input type="text" class="reg-form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="reg-form-group">
+                            <label class="reg-form-label">Contact Number*</label>
+                            <input type="tel" class="reg-form-input" required>
+                        </div>
+
+                        <div class="reg-form-group">
+                            <label class="reg-form-label">Email Address*</label>
+                            <input type="email" class="reg-form-input" required>
+                        </div>
+
+                        <div class="reg-form-group">
+                            <label class="reg-form-label">Affiliated Organization / Enterprise*</label>
+                            <input type="text" class="reg-form-input" required>
+                        </div>
+
+                        <div class="reg-form-group">
+                            <label class="reg-form-label">Role / Professional Designation</label>
+                            <input type="text" class="reg-form-input">
+                        </div>
+
+                        <div class="reg-form-group">
+                            <label class="reg-form-label">How did you hear about us?* (Select one)</label>
+                            <div class="reg-form-checkbox-group">
+                                <label class="reg-form-checkbox-label">
+                                    <input type="radio" name="hearAbout" class="reg-form-checkbox" value="member">
+                                    Referred by an existing Member
+                                </label>
+                                <label class="reg-form-checkbox-label">
+                                    <input type="radio" name="hearAbout" class="reg-form-checkbox" value="invitation">
+                                    Personal Invitation
+                                </label>
+                                <label class="reg-form-checkbox-label">
+                                    <input type="radio" name="hearAbout" class="reg-form-checkbox" value="professional">
+                                    Professional Introduction
+                                </label>
+                                <label class="reg-form-checkbox-label">
+                                    <input type="radio" name="hearAbout" class="reg-form-checkbox" value="event">
+                                    Private Event
+                                </label>
+                                <label class="reg-form-checkbox-label">
+                                    <input type="radio" name="hearAbout" class="reg-form-checkbox" value="discreet">
+                                    Discreet Recommendation
+                                </label>
+                                <label class="reg-form-checkbox-label">
+                                    <input type="radio" name="hearAbout" class="reg-form-checkbox" value="other">
+                                    Other
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="reg-form-group">
+                            <label class="reg-form-label">If applicable, name of referring member/ contact</label>
+                            <input type="text" class="reg-form-input">
+                        </div>
+
+                        <div class="reg-form-submit-container">
+                            <button type="submit" class="reg-form-submit">Submit Registration</button>
+                        </div>
                     </div>
                 </div>
-            </section>            
+            </section>
 
+            
         </div>
-
-        <!-- Social Section -->
-    <section class="newctn-social-section">
-        <div class="newctn-container">
-            <h2 class="newctn-social-title">Follow Our Journey</h2>
-            <p class="newctn-social-description">
-                Connect with us on social media
-            </p>
-            <div class="newctn-social-links">
-                <a href="#" class="newctn-social-link" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="newctn-social-link" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-            </div>
-            <p class="newctn-social-note">
-                We share selectively, as befits our philosophy.
-            </p>
-        </div>
-    </section>
         <!-- content close -->
         <!-- footer begin -->
          <footer class="nw-footer" role="contentinfo">
