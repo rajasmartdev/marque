@@ -23472,3 +23472,299 @@ border-radius:20px 0 0 20px;
                 font-size: 32px;
             }
         }
+
+        .abz-section {
+            background: linear-gradient(135deg, #e8f4f8 0%, #f5f9fa 100%);
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .abz-heading-small {
+            font-size: 14px;
+            color: #ab8965;
+            letter-spacing: 2px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .abz-main-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .abz-description {
+            color: #7f8c8d;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .abz-images-container {
+            position: relative;
+            height: 450px;
+        }
+
+        .abz-image-wrapper {
+            position: absolute;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .abz-image-large {
+            width: 400px;
+            height: 480px;
+            top: -50px;
+            left: 0;
+            z-index: 2;
+        }
+
+        .abz-image-small {
+            width: 260px;
+            height: 260px;
+            bottom: -50px;
+            border: 5px solid #fff;
+            right: 0;
+            z-index: 3;
+        }
+
+        .abz-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .abz-badge {
+            position: absolute;
+            top: 20px;
+            right: -20px;
+            background: linear-gradient(135deg, #ab8965 0%, #ab8965 100%);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 500;
+            box-shadow: 0 10px 30px #ab8965;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .abz-badge i {
+            font-size: 24px;
+        }
+
+        .abz-play-button {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #1a5f7a 0%, #0d3d52 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 15px 40px rgba(26, 95, 122, 0.4);
+            z-index: 3;
+            transition: transform 0.3s ease;
+        }
+
+        .abz-play-button:hover {
+            transform: scale(1.1);
+        }
+
+        .abz-play-button i {
+            color: white;
+            font-size: 32px;
+            margin-left: 5px;
+        }
+
+        .abz-contact-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+            margin-top: 30px;
+        }
+
+        .abz-contact-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .abz-contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ab8965 0%, #ab8965 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .abz-contact-icon i {
+            color: white;
+            font-size: 22px;
+        }
+
+        .abz-contact-text {
+            font-size: 20px;
+            color: #95a5a6;
+            line-height: 1.6;
+        }
+
+        .abz-contact-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .abz-phone {
+            font-size: 28px;
+            font-weight: 600;
+            color: #ab8965;
+            text-decoration: none;
+        }
+
+        .abz-divider {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #ab8965;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .abz-divider i {
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+
+        .abz-mail-button {
+            background: #ab8965;
+            color: white;
+            padding: 12px 35px;
+            border-radius: 50px;
+            border: none;
+            font-size: 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .abz-mail-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px #ab8965;
+        }
+
+        @media (min-width: 991px) {
+            .abz-content{
+              padding-left: 40px;
+            }          
+        }
+
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            .abz-main-heading {
+                font-size: 36px;
+            }
+
+            .abz-images-container {
+                height: 380px;
+                margin-bottom: 40px;
+            }
+
+            .abz-image-large {
+                width: 400px;
+                height: 480px;
+            }
+
+            .abz-image-small {
+                width: 220px;
+                height: 190px;
+            }
+
+            .abz-play-button {
+                width: 80px;
+                height: 80px;
+            }
+
+            .abz-play-button i {
+                font-size: 26px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .abz-section {
+                padding: 50px 0;
+            }
+
+            .abz-main-heading {
+                font-size: 32px;
+            }
+
+            .abz-images-container {
+                height: 320px;
+            }
+
+            .abz-image-large {
+                width: 280px;
+                height: 340px;
+            }
+
+            .abz-image-small {
+                width: 200px;
+                height: 180px;
+            }
+
+            .abz-badge {
+                font-size: 14px;
+                padding: 12px 25px;
+                right: -10px;
+            }
+
+            .abz-play-button {
+                width: 70px;
+                height: 70px;
+                bottom: -20px;
+                left: -20px;
+            }
+
+            .abz-play-button i {
+                font-size: 22px;
+            }
+
+            .abz-contact-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .abz-phone {
+                font-size: 24px;
+            }
+
+            .abz-divider {
+                display: none;
+            }
+
+            .abz-mail-button {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
