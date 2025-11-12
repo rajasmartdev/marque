@@ -21907,6 +21907,11 @@ border-radius:20px 0 0 20px;
             transform: scale(1.1);
         }
 
+        .locations-city-image:hover .locations-city-badge{
+          background: var(--bg-color-even);
+          color: #fff;
+        }
+
         .locations-city-image-overlay {
             position: absolute;
             bottom: 0;
