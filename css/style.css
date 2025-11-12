@@ -13703,7 +13703,7 @@ input.text-center{
     z-index: 1;
     position: absolute;
     width: 100%;
-    top: 85%;
+    top: 90%;
     transform: translateY(-50%);
     letter-spacing: -.5;
 }
@@ -13728,6 +13728,9 @@ input.text-center{
 h1.slider-title{ 
   line-height: 1.15em;
 }
+h2.slider-title{
+  font-size: 40px !important;
+}
 h3.slider-teaser{
   font-size: 24px;
 }
@@ -13743,7 +13746,7 @@ p.slider-teaser{
 .sw-text-wrapper {
   display: inline-block;
   background: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(6px); 
+  backdrop-filter: blur(4px); 
   border-radius: 10px;
 }
 
