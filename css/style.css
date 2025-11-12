@@ -9701,9 +9701,9 @@ h4.de-timeline-year {
   width: 150px;
 }
 
-/* .abs,.absolute {
+.abs,.absolute {
   position: absolute;
-} */
+} 
 
 .abs-center {
   left: 50%;
