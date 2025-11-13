@@ -13703,7 +13703,7 @@ input.text-center{
     z-index: 1;
     position: absolute;
     width: 100%;
-    top: 72%;
+    top: 80%;
     transform: translateY(-50%);
     letter-spacing: -.5;
 }
