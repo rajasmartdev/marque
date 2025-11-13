@@ -13703,7 +13703,7 @@ input.text-center{
     z-index: 1;
     position: absolute;
     width: 100%;
-    top: 90%;
+    top: 72%;
     transform: translateY(-50%);
     letter-spacing: -.5;
 }
@@ -13729,7 +13729,7 @@ h1.slider-title{
   line-height: 1.15em;
 }
 h2.slider-title{
-  font-size: 40px !important;
+  font-size: 37px !important;
 }
 h3.slider-teaser{
   font-size: 24px;
