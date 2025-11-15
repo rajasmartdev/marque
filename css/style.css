@@ -22091,7 +22091,7 @@ border-radius:20px 0 0 20px;
 
             .locations-city-content {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 0px;
             }
 
             .locations-city-card:nth-child(even) .locations-city-content {
@@ -22121,7 +22121,7 @@ border-radius:20px 0 0 20px;
             }
 
             .locations-city-card {
-                margin-bottom: 80px;
+                margin-bottom: 0px;
             }
 
             .locations-city-name {
@@ -22460,7 +22460,7 @@ border-radius:20px 0 0 20px;
 
         .mem-seek-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 400;
             color: var(--mem-primary);
         }
@@ -22538,7 +22538,7 @@ border-radius:20px 0 0 20px;
 
         .mem-process-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 400;
             margin-bottom: 3rem;
         }
