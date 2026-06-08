@@ -21,7 +21,10 @@
     --border-strong: rgba(26,24,20,0.3);
     --accent: #2d3a2e;
     --accent-light: #e8ede8;
+    --error: #b83232;
+    --error-bg: #fdf2f2;
     --radius: 4px;
+    --optional-color: #7a7570;
   }
 
   body {
@@ -90,10 +93,26 @@
     .card { padding: 28px 20px; }
   }
 
-  /* Progress */
-  .progress-wrap {
-    margin-bottom: 36px;
+  /* Legend */
+  .field-legend {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-bottom: 24px;
+    padding: 8px 12px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-style: italic;
   }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .req-star { color: var(--error); font-size: 14px; font-style: normal; }
+  .opt-tag { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--optional-color); background: var(--cream-dark); padding: 1px 6px; border-radius: 2px; font-style: normal; }
+
+  /* Progress */
+  .progress-wrap { margin-bottom: 36px; }
 
   .steps-track {
     display: flex;
@@ -214,13 +233,36 @@
   .field { margin-bottom: 20px; }
 
   .field label {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     font-size: 12px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink-light);
     margin-bottom: 7px;
     font-family: 'EB Garamond', serif;
+  }
+
+  .field label .req-mark {
+    color: var(--error);
+    font-size: 16px;
+    line-height: 1;
+    font-style: normal;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .field label .opt-badge {
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--optional-color);
+    background: var(--cream-dark);
+    padding: 1px 6px;
+    border-radius: 2px;
+    font-style: normal;
+    font-weight: 400;
   }
 
   input[type=text],
@@ -244,6 +286,14 @@
     border-color: var(--gold);
     box-shadow: 0 0 0 2px rgba(139,105,20,0.1);
   }
+
+  input.invalid, select.invalid, textarea.invalid {
+    border-color: var(--error) !important;
+    background: var(--error-bg);
+    box-shadow: 0 0 0 2px rgba(184,50,50,0.08) !important;
+  }
+
+  .opt-pill-wrap.invalid .opt-pill, .check-list-wrap.invalid .check-item { border-color: var(--error); }
 
   textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
 
@@ -332,6 +382,41 @@
     color: var(--ink);
   }
 
+  /* Error message */
+  .err-msg {
+    display: none;
+    font-size: 12px;
+    color: var(--error);
+    font-style: italic;
+    margin-top: 5px;
+    align-items: center;
+    gap: 4px;
+  }
+  .err-msg.show { display: flex; }
+  .err-msg::before { content: '⚠'; font-size: 11px; font-style: normal; }
+
+  /* Validation summary */
+  .val-summary {
+    display: none;
+    background: var(--error-bg);
+    border: 1px solid rgba(184,50,50,0.3);
+    border-left: 3px solid var(--error);
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--error);
+    margin-bottom: 20px;
+    border-radius: var(--radius);
+    animation: shake 0.4s ease;
+  }
+  .val-summary.show { display: block; }
+  .val-summary strong { display: block; margin-bottom: 4px; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20%,60% { transform: translateX(-4px); }
+    40%,80% { transform: translateX(4px); }
+  }
+
   /* Consent */
   .consent-box {
     border: 1px solid var(--border);
@@ -388,7 +473,10 @@
 
   .btn.submit:hover { background: #1f2a20; }
 
-  .btn-ghost { background: none; border: none; color: var(--ink-muted); cursor: default; }
+  .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 
   /* Step count */
   .step-count {
@@ -461,6 +549,7 @@
 
   .upload-zone:hover { border-color: var(--gold); background: var(--gold-pale); }
   .upload-zone.has-file { border-style: solid; border-color: var(--accent); background: var(--accent-light); }
+  .upload-zone.invalid-zone { border-color: var(--error); background: var(--error-bg); }
 
   .upload-zone input[type=file] {
     position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
@@ -504,7 +593,6 @@
   .sig-panel { display: none; }
   .sig-panel.active { display: block; }
 
-  /* Signature canvas */
   .sig-canvas-wrap {
     border: 1px solid var(--border-strong);
     border-radius: var(--radius);
@@ -541,6 +629,131 @@
     border-radius: var(--radius); transition: all 0.15s;
   }
   .sig-btn:hover { background: var(--cream-dark); }
+
+  /* Nominee child section */
+  .child-section {
+    margin-top: 8px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold-light);
+    padding: 20px 20px 4px;
+    background: var(--gold-pale);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .child-section.show { display: block; }
+
+  .child-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--ink-light);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Membership info box */
+  .membership-info-box {
+    border: 1px solid var(--border-strong);
+    border-left: 3px solid var(--accent);
+    padding: 20px 22px;
+    margin-bottom: 28px;
+    background: var(--accent-light);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+
+  .membership-info-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .membership-intro {
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .membership-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .membership-bullets li {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .membership-bullets li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 14px;
+  }
+
+  /* Declaration checkbox */
+  .declaration-check-label {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 16px 18px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s;
+    font-size: 15px !important;
+    color: var(--ink-light) !important;
+    line-height: 1.7 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-style: italic;
+    font-weight: 400 !important;
+  }
+
+  .declaration-check-label:has(input:checked) {
+    background: var(--gold-pale);
+    border-color: var(--gold-light);
+    color: var(--ink) !important;
+  }
+
+  .declaration-check-label input[type=checkbox] {
+    width: 16px !important;
+    height: 16px !important;
+    flex-shrink: 0;
+    margin-top: 3px;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+
+  /* Reorder notice */
+  .reorder-note {
+    background: var(--accent-light);
+    border: 1px solid rgba(45,58,46,0.2);
+    border-left: 3px solid var(--accent);
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    font-style: italic;
+    margin-bottom: 20px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
 </style>
 </head>
 <body>
@@ -592,165 +805,225 @@
     </div>
   </div>
 
-  <!-- Step 1: Personal -->
+  <!-- Legend -->
+  <div class="field-legend">
+    <div class="legend-item"><span class="req-star">*</span> Required field</div>
+    <div class="legend-item"><span class="opt-tag">Optional</span> Optional field</div>
+  </div>
+
+  <!-- ======== Step 1: Personal ======== -->
   <div class="section active" id="s0">
     <div class="section-head">
       <h2>Personal Information</h2>
       <p>Primary member details</p>
     </div>
+    <div class="val-summary" id="vs0"></div>
 
-    <div class="field">
-      <label>Title</label>
-      <div class="options">
+    <div class="field" id="f-title">
+      <label>Title <span class="req-mark">*</span></label>
+      <div class="options" id="opts-title">
         <label class="opt-pill"><input type="radio" name="title" value="Mr"> Mr</label>
         <label class="opt-pill"><input type="radio" name="title" value="Ms"> Ms</label>
         <label class="opt-pill"><input type="radio" name="title" value="Mrs"> Mrs</label>
         <label class="opt-pill"><input type="radio" name="title" value="Dr"> Dr</label>
         <label class="opt-pill"><input type="radio" name="title" value="Other"> Other</label>
       </div>
+      <div class="err-msg" id="e-title">Please select a title.</div>
     </div>
 
     <div class="row2">
       <div class="field">
-        <label>First Name</label>
-        <input type="text" placeholder="First name">
+        <label>First Name <span class="req-mark">*</span></label>
+        <input type="text" id="firstName" placeholder="First name">
+        <div class="err-msg" id="e-firstName">First name is required.</div>
       </div>
       <div class="field">
-        <label>Last Name</label>
-        <input type="text" placeholder="Last name">
+        <label>Last Name <span class="req-mark">*</span></label>
+        <input type="text" id="lastName" placeholder="Last name">
+        <div class="err-msg" id="e-lastName">Last name is required.</div>
       </div>
     </div>
 
-    <div class="field">
-      <label>Gender</label>
-      <div class="options">
+    <div class="field" id="f-gender">
+      <label>Gender <span class="req-mark">*</span></label>
+      <div class="options" id="opts-gender">
         <label class="opt-pill"><input type="radio" name="gender" value="Male"> Male</label>
         <label class="opt-pill"><input type="radio" name="gender" value="Female"> Female</label>
         <label class="opt-pill"><input type="radio" name="gender" value="Other"> Other</label>
         <label class="opt-pill"><input type="radio" name="gender" value="Prefer not to say"> Prefer not to say</label>
       </div>
+      <div class="err-msg" id="e-gender">Please select a gender.</div>
     </div>
 
     <div class="field">
-      <label>Date of Birth</label>
+      <label>Date of Birth <span class="req-mark">*</span></label>
       <div class="dob-wrap">
-        <input type="text" placeholder="DD" maxlength="2">
+        <input type="text" id="dobDD" placeholder="DD" maxlength="2">
         <span class="dob-sep">/</span>
-        <input type="text" placeholder="MM" maxlength="2">
+        <input type="text" id="dobMM" placeholder="MM" maxlength="2">
         <span class="dob-sep">/</span>
-        <input type="text" placeholder="YYYY" maxlength="4">
+        <input type="text" id="dobYYYY" placeholder="YYYY" maxlength="4">
       </div>
+      <div class="err-msg" id="e-dob">Please enter a valid date of birth (DD/MM/YYYY).</div>
     </div>
 
     <div class="field">
-      <label>Nationality</label>
-      <input type="text" placeholder="Your nationality">
+      <label>Nationality <span class="req-mark">*</span></label>
+      <input type="text" id="nationality" placeholder="Your nationality">
+      <div class="err-msg" id="e-nationality">Nationality is required.</div>
     </div>
 
-    <div class="field">
-      <label>Relationship Status</label>
-      <div class="options">
-        <label class="opt-pill"><input type="radio" name="rel" value="Single"> Single</label>
-        <label class="opt-pill"><input type="radio" name="rel" value="Married"> Married</label>
-        <label class="opt-pill"><input type="radio" name="rel" value="Domestic Partnership"> Domestic Partnership</label>
-        <label class="opt-pill"><input type="radio" name="rel" value="Other"> Other</label>
+    <div class="field" id="f-rel">
+      <label>Relationship Status <span class="req-mark">*</span></label>
+      <div class="options" id="opts-rel">
+        <label class="opt-pill"><input type="radio" name="rel" value="Single" onchange="handleRelChange()"> Single</label>
+        <label class="opt-pill"><input type="radio" name="rel" value="Married" onchange="handleRelChange()"> Married</label>
+        <label class="opt-pill"><input type="radio" name="rel" value="Domestic Partnership" onchange="handleRelChange()"> Domestic Partnership</label>
+        <label class="opt-pill"><input type="radio" name="rel" value="Other" onchange="handleRelChange()"> Other</label>
       </div>
+      <div class="err-msg" id="e-rel">Please select relationship status.</div>
     </div>
 
-    <div class="field">
-      <label>Anniversary <span style="font-style:italic;font-weight:300;">(if applicable)</span></label>
+    <div class="field" id="f-anniversary" style="display:none;">
+      <label>Anniversary <span class="opt-badge">Optional</span></label>
       <div class="dob-wrap">
-        <input type="text" placeholder="DD" maxlength="2">
+        <input type="text" id="annDD" placeholder="DD" maxlength="2">
         <span class="dob-sep">/</span>
-        <input type="text" placeholder="MM" maxlength="2">
+        <input type="text" id="annMM" placeholder="MM" maxlength="2">
         <span class="dob-sep">/</span>
-        <input type="text" placeholder="YYYY" maxlength="4">
+        <input type="text" id="annYYYY" placeholder="YYYY" maxlength="4">
       </div>
     </div>
 
     <div class="nav">
       <span class="step-count">Step 1 of 7</span>
-      <button class="btn primary" onclick="next()">Continue →</button>
+      <button class="btn primary" onclick="nextStep(0)">Continue →</button>
     </div>
   </div>
 
-  <!-- Step 2: Professional -->
+  <!-- ======== Step 2: Professional ======== -->
   <div class="section" id="s1">
     <div class="section-head">
       <h2>Professional Details</h2>
       <p>Your occupation and workplace</p>
     </div>
+    <div class="val-summary" id="vs1"></div>
 
     <div class="field">
-      <label>Designation</label>
-      <input type="text" placeholder="Your job title or role">
+      <label>Designation <span class="req-mark">*</span></label>
+      <input type="text" id="designation" placeholder="Your job title or role">
+      <div class="err-msg" id="e-designation">Designation is required.</div>
     </div>
 
     <div class="field">
-      <label>Company / Organisation</label>
-      <input type="text" placeholder="Name of your company or organisation">
+      <label>Company / Organisation <span class="req-mark">*</span></label>
+      <input type="text" id="company" placeholder="Name of your company or organisation">
+      <div class="err-msg" id="e-company">Company / Organisation is required.</div>
     </div>
 
     <div class="field">
-      <label>Industry</label>
-      <input type="text" placeholder="E.g. Finance, Technology, Healthcare, Real Estate">
+      <label>Industry <span class="opt-badge">Optional</span></label>
+      <input type="text" id="industry" placeholder="E.g. Finance, Technology, Healthcare, Real Estate">
     </div>
 
     <div class="nav">
       <button class="btn" onclick="prev()">← Back</button>
       <span class="step-count">Step 2 of 7</span>
-      <button class="btn primary" onclick="next()">Continue →</button>
+      <button class="btn primary" onclick="nextStep(1)">Continue →</button>
     </div>
   </div>
 
-  <!-- Step 3: Contact -->
+  <!-- ======== Step 3: Contact ======== -->
   <div class="section" id="s2">
     <div class="section-head">
       <h2>Contact Information</h2>
       <p>How we may reach you</p>
     </div>
+    <div class="val-summary" id="vs2"></div>
 
     <div class="field">
-      <label>Email Address</label>
-      <input type="email" placeholder="you@example.com">
+      <label>Email Address <span class="req-mark">*</span></label>
+      <input type="email" id="email" placeholder="you@example.com">
+      <div class="err-msg" id="e-email">Please enter a valid email address.</div>
     </div>
 
     <div class="field">
-      <label>Mobile Number</label>
-      <input type="tel" placeholder="+91 XXXXX XXXXX">
+      <label>Mobile Number <span class="req-mark">*</span></label>
+      <input type="tel" id="mobile" placeholder="+91 XXXXX XXXXX">
+      <div class="err-msg" id="e-mobile">Mobile number is required.</div>
     </div>
 
     <div class="field">
-      <label>Residential Address</label>
-      <textarea placeholder="Street, area, city, state"></textarea>
+      <label>Residential Address <span class="req-mark">*</span></label>
+      <textarea id="address" placeholder="Street, area, city, state"></textarea>
+      <div class="err-msg" id="e-address">Address is required.</div>
     </div>
 
     <div class="field">
-      <label>Pincode</label>
-      <input type="text" placeholder="6-digit pincode" maxlength="6" style="max-width: 200px;">
+      <label>Pincode <span class="req-mark">*</span></label>
+      <input type="text" id="pincode" placeholder="6-digit pincode" maxlength="6" style="max-width: 200px;">
+      <div class="err-msg" id="e-pincode">Please enter a valid 6-digit pincode.</div>
     </div>
 
     <div class="nav">
       <button class="btn" onclick="prev()">← Back</button>
       <span class="step-count">Step 3 of 7</span>
-      <button class="btn primary" onclick="next()">Continue →</button>
+      <button class="btn primary" onclick="nextStep(2)">Continue →</button>
     </div>
   </div>
 
-  <!-- Step 4: Identity -->
+  <!-- ======== Step 4: Identity ======== -->
   <div class="section" id="s3">
     <div class="section-head">
       <h2>Identity &amp; KYC</h2>
       <p>Required for verification purposes</p>
     </div>
+    <div class="val-summary" id="vs3"></div>
 
-    <div class="field">
-      <label>PAN Number</label>
-      <input type="text" placeholder="ABCDE1234F" maxlength="10" style="text-transform:uppercase; max-width:220px;">
+    <!-- ID Type FIRST (mandatory) -->
+    <div class="field" id="f-idtype">
+      <label>ID Proof Type <span class="req-mark">*</span></label>
+      <div class="options" id="opts-idtype">
+        <label class="opt-pill"><input type="radio" name="idtype" value="Aadhaar"> Aadhaar</label>
+        <label class="opt-pill"><input type="radio" name="idtype" value="Passport"> Passport</label>
+        <label class="opt-pill"><input type="radio" name="idtype" value="Driving License"> Driving License</label>
+        <label class="opt-pill"><input type="radio" name="idtype" value="Other"> Other</label>
+      </div>
+      <div class="err-msg" id="e-idtype">Please select an ID proof type.</div>
     </div>
 
     <div class="field">
-      <label>Upload PAN Card <span style="font-style:italic;font-weight:300;">(JPG, PNG or PDF · max 5MB)</span></label>
+      <label>ID Number <span class="req-mark">*</span></label>
+      <input type="text" id="idNumber" placeholder="Enter your ID number">
+      <div class="err-msg" id="e-idNumber">ID number is required.</div>
+    </div>
+
+    <div class="field">
+      <label>Upload ID Proof <span class="req-mark">*</span> <span style="font-style:italic;font-weight:300;text-transform:none;letter-spacing:0;font-size:11px;">(JPG, PNG or PDF · max 5MB)</span></label>
+      <div class="upload-zone" id="idZone" onclick="document.getElementById('idFile').click()">
+        <input type="file" id="idFile" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFile('idFile','idPreview','idZone','idName')">
+        <span class="upload-icon">🪪</span>
+        <div class="upload-text"><strong>Click to upload</strong> or drag &amp; drop</div>
+        <div class="upload-sub">Front &amp; back of Aadhaar / Passport / Driving License</div>
+      </div>
+      <div class="file-preview" id="idPreview">
+        <span>📎</span>
+        <span class="file-preview-name" id="idName"></span>
+        <button class="file-preview-remove" onclick="removeFile('idFile','idPreview','idZone')" title="Remove">✕</button>
+      </div>
+      <div class="err-msg" id="e-idFile">Please upload your ID proof document.</div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- PAN AFTER ID (optional) -->
+    <div class="field">
+      <label>PAN Number <span class="opt-badge">Optional</span></label>
+      <input type="text" id="panNumber" placeholder="ABCDE1234F" maxlength="10" style="text-transform:uppercase; max-width:220px;">
+    </div>
+
+    <div class="field">
+      <label>Upload PAN Card <span class="opt-badge">Optional</span> <span style="font-style:italic;font-weight:300;text-transform:none;letter-spacing:0;font-size:11px;">(JPG, PNG or PDF · max 5MB)</span></label>
       <div class="upload-zone" id="panZone" onclick="document.getElementById('panFile').click()">
         <input type="file" id="panFile" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFile('panFile','panPreview','panZone','panName')">
         <span class="upload-icon">📄</span>
@@ -764,161 +1037,187 @@
       </div>
     </div>
 
-    <hr class="divider">
-
-    <div class="field">
-      <label>ID Proof Type</label>
-      <div class="options">
-        <label class="opt-pill"><input type="radio" name="idtype" value="Aadhaar"> Aadhaar</label>
-        <label class="opt-pill"><input type="radio" name="idtype" value="Passport"> Passport</label>
-        <label class="opt-pill"><input type="radio" name="idtype" value="Driving License"> Driving License</label>
-        <label class="opt-pill"><input type="radio" name="idtype" value="Other"> Other</label>
-      </div>
-    </div>
-
-    <div class="field">
-      <label>ID Number</label>
-      <input type="text" placeholder="Enter your ID number">
-    </div>
-
-    <div class="field">
-      <label>Upload ID Proof <span style="font-style:italic;font-weight:300;">(JPG, PNG or PDF · max 5MB)</span></label>
-      <div class="upload-zone" id="idZone" onclick="document.getElementById('idFile').click()">
-        <input type="file" id="idFile" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFile('idFile','idPreview','idZone','idName')">
-        <span class="upload-icon">🪪</span>
-        <div class="upload-text"><strong>Click to upload</strong> or drag &amp; drop</div>
-        <div class="upload-sub">Front &amp; back of Aadhaar / Passport / Driving License</div>
-      </div>
-      <div class="file-preview" id="idPreview">
-        <span>📎</span>
-        <span class="file-preview-name" id="idName"></span>
-        <button class="file-preview-remove" onclick="removeFile('idFile','idPreview','idZone')" title="Remove">✕</button>
-      </div>
-    </div>
-
     <div class="nav">
       <button class="btn" onclick="prev()">← Back</button>
       <span class="step-count">Step 4 of 7</span>
-      <button class="btn primary" onclick="next()">Continue →</button>
+      <button class="btn primary" onclick="nextStep(3)">Continue →</button>
     </div>
   </div>
 
-  <!-- Step 5: Nominee -->
+  <!-- ======== Step 5: Nominee ======== -->
   <div class="section" id="s4">
     <div class="section-head">
       <h2>Nominee Details</h2>
-      <p>Emergency contact and next of kin</p>
+      <p>Emergency contact and next of kin — all fields required</p>
+    </div>
+    <div class="val-summary" id="vs4"></div>
+
+    <div class="field">
+      <label>Full Name <span class="req-mark">*</span></label>
+      <input type="text" id="nomName" placeholder="Nominee's full name">
+      <div class="err-msg" id="e-nomName">Nominee's full name is required.</div>
     </div>
 
     <div class="field">
-      <label>Full Name</label>
-      <input type="text" placeholder="Nominee's full name">
-    </div>
-
-    <div class="field">
-      <label>Date of Birth</label>
+      <label>Date of Birth <span class="req-mark">*</span></label>
       <div class="dob-wrap">
-        <input type="text" placeholder="DD" maxlength="2">
+        <input type="number" id="nomDobDD" placeholder="DD" maxlength="2">
         <span class="dob-sep">/</span>
-        <input type="text" placeholder="MM" maxlength="2">
+        <input type="number" id="nomDobMM" placeholder="MM" maxlength="2">
         <span class="dob-sep">/</span>
-        <input type="text" placeholder="YYYY" maxlength="4">
+        <input type="number" id="nomDobYYYY" placeholder="YYYY" maxlength="4">
       </div>
+      <div class="err-msg" id="e-nomDob">Please enter nominee's date of birth.</div>
     </div>
 
     <div class="field">
-      <label>Relationship to Applicant</label>
-      <input type="text" placeholder="E.g. Spouse, Parent, Sibling, Child">
+      <label>Relationship to Applicant <span class="req-mark">*</span></label>
+      <select id="nomRelationship" onchange="handleNomRelChange()">
+        <option value="">— Select relationship —</option>
+        <option value="Spouse">Spouse</option>
+        <option value="Parent">Parent</option>
+        <option value="Sibling">Sibling</option>
+        <option value="Child">Child</option>
+        <option value="Other">Other</option>
+      </select>
+      <div class="err-msg" id="e-nomRelationship">Please select the relationship.</div>
     </div>
 
     <div class="field">
-      <label>Mobile Number</label>
-      <input type="tel" placeholder="+91 XXXXX XXXXX">
+      <label>Mobile Number <span class="req-mark">*</span></label>
+      <input type="tel" id="nomMobile" placeholder="+91 XXXXX XXXXX">
+      <div class="err-msg" id="e-nomMobile">Nominee's mobile number is required.</div>
     </div>
 
     <div class="field">
-      <label>Email Address</label>
-      <input type="email" placeholder="nominee@example.com">
+      <label>Email Address <span class="req-mark">*</span></label>
+      <input type="email" id="nomEmail" placeholder="nominee@example.com">
+      <div class="err-msg" id="e-nomEmail">Please enter a valid email address.</div>
+    </div>
+
+    <!-- Child details (shown when spouse is nominee) -->
+    <div class="child-section" id="childSection">
+      <div class="child-section-title">Child Details <span class="opt-badge" style="font-size:11px;">Optional</span></div>
+      <p class="helper" style="margin-bottom:16px;">Since your nominee is your spouse, you may optionally add a child as an additional contact.</p>
+
+      <div class="field">
+        <label>Child's Full Name <span class="opt-badge">Optional</span></label>
+        <input type="text" id="childName" placeholder="Child's full name">
+      </div>
+
+      <div class="field">
+        <label>Child's Date of Birth <span class="opt-badge">Optional</span></label>
+        <div class="dob-wrap">
+          <input type="text" id="childDobDD" placeholder="DD" maxlength="2">
+          <span class="dob-sep">/</span>
+          <input type="text" id="childDobMM" placeholder="MM" maxlength="2">
+          <span class="dob-sep">/</span>
+          <input type="text" id="childDobYYYY" placeholder="YYYY" maxlength="4">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Child's Mobile Number <span class="opt-badge">Optional</span></label>
+        <input type="tel" id="childMobile" placeholder="+91 XXXXX XXXXX">
+      </div>
+
+      <div class="field">
+        <label>Child's Email Address <span class="opt-badge">Optional</span></label>
+        <input type="email" id="childEmail" placeholder="child@example.com">
+      </div>
     </div>
 
     <div class="nav">
       <button class="btn" onclick="prev()">← Back</button>
       <span class="step-count">Step 5 of 7</span>
-      <button class="btn primary" onclick="next()">Continue →</button>
+      <button class="btn primary" onclick="nextStep(4)">Continue →</button>
     </div>
   </div>
 
-  <!-- Step 6: Interests -->
+  <!-- ======== Step 6: Interests ======== -->
   <div class="section" id="s5">
     <div class="section-head">
       <h2>Interests &amp; Preferences</h2>
       <p>Help us personalise your membership experience</p>
     </div>
+    <div class="val-summary" id="vs5"></div>
 
     <div class="field">
-      <label>Areas of Interest <span style="font-style:italic;font-weight:300;">(Tick all that apply)</span></label>
+      <label>Areas of Interest <span class="opt-badge">Optional</span></label>
       <div class="check-list">
         <label class="check-item"><input type="checkbox"> Networking &amp; Business Forums</label>
-        <label class="check-item"><input type="checkbox"> Fine Dining &amp; Wine</label>
-        <label class="check-item"><input type="checkbox"> Wellness &amp; Fitness</label>
+        <label class="check-item"><input type="checkbox"> Gourmet &amp; Fine Dining</label>
         <label class="check-item"><input type="checkbox"> Sports &amp; Recreation</label>
         <label class="check-item"><input type="checkbox"> Art, Culture &amp; Music</label>
         <label class="check-item"><input type="checkbox"> Family Engagement</label>
         <label class="check-item"><input type="checkbox"> Travel &amp; Global Experiences</label>
-        <label class="check-item"><input type="checkbox"> Entrepreneurship &amp; Investments</label>
       </div>
     </div>
 
     <hr class="divider">
 
     <div class="field">
-      <label>Preferred Communication Mode</label>
-      <div class="options">
-        <label class="opt-pill"><input type="radio" name="comm" value="WhatsApp"> WhatsApp</label>
-        <label class="opt-pill"><input type="radio" name="comm" value="Email"> Email</label>
-        <label class="opt-pill"><input type="radio" name="comm" value="SMS"> SMS</label>
-        <label class="opt-pill"><input type="radio" name="comm" value="Phone Call"> Phone Call</label>
-      </div>
+      <label>Dietary Restrictions or Allergies <span class="opt-badge">Optional</span></label>
+      <textarea id="dietaryRestrictions" placeholder="E.g. vegetarian, vegan, gluten-free, nut allergy, lactose intolerant…" style="min-height:80px;"></textarea>
     </div>
 
     <div class="field">
-      <label>How did you hear about us?</label>
-      <div class="options">
-        <label class="opt-pill"><input type="radio" name="source" value="Friend"> Friend</label>
-        <label class="opt-pill"><input type="radio" name="source" value="Social Media"> Social Media</label>
-        <label class="opt-pill"><input type="radio" name="source" value="Website"> Website</label>
-        <label class="opt-pill"><input type="radio" name="source" value="Referral"> Referral</label>
-        <label class="opt-pill"><input type="radio" name="source" value="Other"> Other</label>
-      </div>
+      <label>Favourite Cuisines &amp; Dishes <span class="opt-badge">Optional</span></label>
+      <textarea id="favouriteCuisines" placeholder="E.g. Italian, Japanese, coastal seafood, wood-fired pizza…" style="min-height:80px;"></textarea>
     </div>
+
+    <div class="field">
+      <label>Favourite Drinks &amp; Cocktails <span class="opt-badge">Optional</span></label>
+      <textarea id="favouriteDrinks" placeholder="E.g. single malt whisky, Negroni, sparkling water, craft beer…" style="min-height:80px;"></textarea>
+    </div>
+
+    <hr class="divider">
 
     <div class="nav">
       <button class="btn" onclick="prev()">← Back</button>
       <span class="step-count">Step 6 of 7</span>
-      <button class="btn primary" onclick="next()">Continue →</button>
+      <button class="btn primary" onclick="nextStep(5)">Continue →</button>
     </div>
   </div>
 
-  <!-- Step 7: Declaration -->
+  <!-- ======== Step 7: Declaration ======== -->
   <div class="section" id="s6">
     <div class="section-head">
       <h2>Declaration &amp; Signature</h2>
-      <p>Please read and sign below</p>
+      <p>Please read carefully and sign below</p>
+    </div>
+    <div class="val-summary" id="vs6"></div>
+
+    <!-- Membership Information -->
+    <div class="membership-info-box">
+      <div class="membership-info-title">Membership Information</div>
+      <p class="membership-intro">Membership entitles <strong>"Full Access"</strong> to The Marque for the Member &amp; their Partner.</p>
+      <ul class="membership-bullets">
+        <li>Partner means a legal spouse or a partner residing at the same address.</li>
+        <li>GST applicable on all rates.</li>
+        <li>The one time initiation fee is valid for a period of 5 years and is non refundable.</li>
+        <li>Annual Dues are subject to periodic changes as decided by the Club Management.</li>
+        <li>All new members are expected to pay the initiation fee upon signing plus applicable GST. Annual fee will be applicable from 2nd year onwards.</li>
+      </ul>
     </div>
 
-    <div class="consent-box">
-      I confirm that the information provided is accurate. I understand that submission of this application does not guarantee membership and is subject to approval by the Marque Membership Committee.
+    <!-- Declaration checkbox -->
+    <div class="field" id="f-declarationCheck">
+      <label class="declaration-check-label" id="declCheckLabel">
+        <input type="checkbox" id="declarationCheck" onchange="handleDeclCheck()">
+        <span>By signing this form, I hereby declare that the above information submitted is true and I agree to abide by the House Rules and Membership By-Laws of The Marque.</span>
+      </label>
+      <div class="err-msg" id="e-declarationCheck">You must agree to the declaration to proceed.</div>
     </div>
 
     <div class="field">
-      <label>Digital Signature</label>
+      <label>Digital Signature <span class="req-mark">*</span></label>
       <div class="sig-tabs">
         <button class="sig-tab active" onclick="switchSigTab('draw', this)">✍ Draw</button>
         <button class="sig-tab" onclick="switchSigTab('type', this)">Aa Type</button>
         <button class="sig-tab" onclick="switchSigTab('upload', this)">↑ Upload</button>
       </div>
 
-      <!-- Draw -->
       <div class="sig-panel active" id="sigDraw">
         <div class="sig-canvas-wrap">
           <canvas id="sigCanvas"></canvas>
@@ -929,12 +1228,10 @@
         </div>
       </div>
 
-      <!-- Type -->
       <div class="sig-panel" id="sigType">
         <input type="text" id="sigTypeInput" placeholder="Type your full legal name" style="font-style:italic; font-size:20px; font-family:'EB Garamond',serif;">
       </div>
 
-      <!-- Upload -->
       <div class="sig-panel" id="sigUpload">
         <div class="upload-zone" id="sigZone" onclick="document.getElementById('sigFile').click()">
           <input type="file" id="sigFile" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFile('sigFile','sigPreview','sigZone','sigName')">
@@ -948,22 +1245,25 @@
           <button class="file-preview-remove" onclick="removeFile('sigFile','sigPreview','sigZone')" title="Remove">✕</button>
         </div>
       </div>
+      <div class="err-msg" id="e-sig">Please provide your signature.</div>
     </div>
 
     <div class="field">
-      <label>Name</label>
-      <input type="text" placeholder="Print your full name">
+      <label>Print Name <span class="req-mark">*</span></label>
+      <input type="text" id="printName" placeholder="Print your full name">
+      <div class="err-msg" id="e-printName">Please print your full name.</div>
     </div>
 
     <div class="field">
-      <label>Date</label>
+      <label>Date <span class="req-mark">*</span></label>
       <div class="dob-wrap">
-        <input type="text" placeholder="DD" maxlength="2">
+        <input type="text" id="declDD" placeholder="DD" maxlength="2">
         <span class="dob-sep">/</span>
-        <input type="text" placeholder="MM" maxlength="2">
+        <input type="text" id="declMM" placeholder="MM" maxlength="2">
         <span class="dob-sep">/</span>
-        <input type="text" placeholder="YYYY" maxlength="4">
+        <input type="text" id="declYYYY" placeholder="YYYY" maxlength="4">
       </div>
+      <div class="err-msg" id="e-declDate">Please enter the date.</div>
     </div>
 
     <div class="nav">
@@ -987,26 +1287,21 @@
 <script>
   let cur = 0;
   const total = 7;
+  let currentSigTab = 'draw';
 
+  // ---- UI State ----
   function updateUI() {
-    document.querySelectorAll('.section').forEach((s, i) => {
-      s.classList.toggle('active', i === cur);
-    });
+    document.querySelectorAll('.section').forEach((s, i) => s.classList.toggle('active', i === cur));
     document.querySelectorAll('.step-node').forEach((n, i) => {
       n.classList.remove('active', 'done');
       if (i === cur) n.classList.add('active');
       else if (i < cur) n.classList.add('done');
     });
     document.querySelectorAll('.step-num').forEach((n, i) => {
-      if (i < cur) n.textContent = '✓';
-      else n.textContent = i + 1;
+      n.textContent = i < cur ? '✓' : i + 1;
     });
     const pct = cur === total ? 100 : Math.round((cur / total) * 100);
     document.getElementById('pbar').style.width = pct + '%';
-  }
-
-  function next() {
-    if (cur < total) { cur++; updateUI(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
   }
 
   function prev() {
@@ -1017,32 +1312,190 @@
     if (n < cur) { cur = n; updateUI(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
   }
 
-  function submitForm() {
-    cur = total;
-    updateUI();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  // ---- Conditional logic ----
+  function handleRelChange() {
+    const val = document.querySelector('input[name="rel"]:checked')?.value;
+    const annField = document.getElementById('f-anniversary');
+    annField.style.display = (val && val !== 'Single') ? 'block' : 'none';
   }
 
-  /* File upload */
+  function handleNomRelChange() {
+    const val = document.getElementById('nomRelationship').value;
+    const childSec = document.getElementById('childSection');
+    childSec.classList.toggle('show', val === 'Spouse');
+  }
+
+  // ---- Validation helpers ----
+  function showErr(id, show) {
+    const el = document.getElementById('e-' + id);
+    if (el) el.classList.toggle('show', show);
+  }
+
+  function markInvalid(id, invalid) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('invalid', invalid);
+  }
+
+  function markRadioInvalid(name, invalid) {
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+      r.closest('.opt-pill').style.borderColor = invalid ? 'var(--error)' : '';
+    });
+  }
+
+  function clearErrors() {
+    document.querySelectorAll('.err-msg').forEach(e => e.classList.remove('show'));
+    document.querySelectorAll('input, select, textarea').forEach(e => e.classList.remove('invalid'));
+    document.querySelectorAll('.opt-pill').forEach(p => p.style.borderColor = '');
+    document.querySelectorAll('.upload-zone').forEach(z => z.classList.remove('invalid-zone'));
+    document.querySelectorAll('.val-summary').forEach(v => { v.classList.remove('show'); v.innerHTML = ''; });
+  }
+
+  function showSummary(stepIdx, msgs) {
+    const el = document.getElementById('vs' + stepIdx);
+    if (!el || !msgs.length) return;
+    el.innerHTML = '<strong>Please complete required fields:</strong>' + msgs.map(m => `<div>· ${m}</div>`).join('');
+    el.classList.add('show');
+  }
+
+  function handleDeclCheck() {
+    const checked = document.getElementById('declarationCheck').checked;
+    if (checked) {
+      document.getElementById('e-declarationCheck').classList.remove('show');
+    }
+  }
+
+  // ---- Per-step validators ----
+  function validateStep(idx) {
+    clearErrors();
+    let errors = [];
+
+    if (idx === 0) {
+      if (!document.querySelector('input[name="title"]:checked')) { markRadioInvalid('title', true); showErr('title', true); errors.push('Title'); }
+      if (!document.getElementById('firstName').value.trim()) { markInvalid('firstName', true); showErr('firstName', true); errors.push('First Name'); }
+      if (!document.getElementById('lastName').value.trim()) { markInvalid('lastName', true); showErr('lastName', true); errors.push('Last Name'); }
+      if (!document.querySelector('input[name="gender"]:checked')) { markRadioInvalid('gender', true); showErr('gender', true); errors.push('Gender'); }
+      const dd = document.getElementById('dobDD').value.trim();
+      const mm = document.getElementById('dobMM').value.trim();
+      const yy = document.getElementById('dobYYYY').value.trim();
+      const dobOk = dd && mm && yy && +dd >= 1 && +dd <= 31 && +mm >= 1 && +mm <= 12 && yy.length === 4;
+      if (!dobOk) {
+        ['dobDD','dobMM','dobYYYY'].forEach(id => markInvalid(id, true));
+        showErr('dob', true); errors.push('Date of Birth');
+      }
+      if (!document.getElementById('nationality').value.trim()) { markInvalid('nationality', true); showErr('nationality', true); errors.push('Nationality'); }
+      if (!document.querySelector('input[name="rel"]:checked')) { markRadioInvalid('rel', true); showErr('rel', true); errors.push('Relationship Status'); }
+    }
+
+    if (idx === 1) {
+      if (!document.getElementById('designation').value.trim()) { markInvalid('designation', true); showErr('designation', true); errors.push('Designation'); }
+      if (!document.getElementById('company').value.trim()) { markInvalid('company', true); showErr('company', true); errors.push('Company / Organisation'); }
+    }
+
+    if (idx === 2) {
+      const emailVal = document.getElementById('email').value.trim();
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+      if (!emailOk) { markInvalid('email', true); showErr('email', true); errors.push('Email Address'); }
+      if (!document.getElementById('mobile').value.trim()) { markInvalid('mobile', true); showErr('mobile', true); errors.push('Mobile Number'); }
+      if (!document.getElementById('address').value.trim()) { markInvalid('address', true); showErr('address', true); errors.push('Residential Address'); }
+      const pin = document.getElementById('pincode').value.trim();
+      if (!pin || pin.length !== 6 || isNaN(pin)) { markInvalid('pincode', true); showErr('pincode', true); errors.push('Pincode'); }
+    }
+
+    if (idx === 3) {
+      if (!document.querySelector('input[name="idtype"]:checked')) { markRadioInvalid('idtype', true); showErr('idtype', true); errors.push('ID Proof Type'); }
+      if (!document.getElementById('idNumber').value.trim()) { markInvalid('idNumber', true); showErr('idNumber', true); errors.push('ID Number'); }
+      if (!document.getElementById('idFile').files.length) {
+        document.getElementById('idZone').classList.add('invalid-zone');
+        showErr('idFile', true); errors.push('ID Proof Document');
+      }
+    }
+
+    if (idx === 4) {
+      if (!document.getElementById('nomName').value.trim()) { markInvalid('nomName', true); showErr('nomName', true); errors.push('Nominee Full Name'); }
+      const ndd = document.getElementById('nomDobDD').value.trim();
+      const nmm = document.getElementById('nomDobMM').value.trim();
+      const nyy = document.getElementById('nomDobYYYY').value.trim();
+      if (!ndd || !nmm || !nyy) { ['nomDobDD','nomDobMM','nomDobYYYY'].forEach(id => markInvalid(id, true)); showErr('nomDob', true); errors.push('Nominee Date of Birth'); }
+      if (!document.getElementById('nomRelationship').value) { markInvalid('nomRelationship', true); showErr('nomRelationship', true); errors.push('Relationship to Applicant'); }
+      if (!document.getElementById('nomMobile').value.trim()) { markInvalid('nomMobile', true); showErr('nomMobile', true); errors.push('Nominee Mobile Number'); }
+      const nomEmail = document.getElementById('nomEmail').value.trim();
+      if (!nomEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(nomEmail)) { markInvalid('nomEmail', true); showErr('nomEmail', true); errors.push('Nominee Email Address'); }
+    }
+
+    
+
+    if (idx === 6) {
+      // Declaration checkbox
+      if (!document.getElementById('declarationCheck').checked) {
+        showErr('declarationCheck', true);
+        errors.push('Declaration agreement');
+      }
+
+      // Signature check
+      let sigOk = false;
+      if (currentSigTab === 'draw') sigOk = hasSig;
+      else if (currentSigTab === 'type') sigOk = document.getElementById('sigTypeInput').value.trim().length > 0;
+      else if (currentSigTab === 'upload') sigOk = document.getElementById('sigFile').files.length > 0;
+      if (!sigOk) { showErr('sig', true); errors.push('Digital Signature'); }
+
+      if (!document.getElementById('printName').value.trim()) { markInvalid('printName', true); showErr('printName', true); errors.push('Print Name'); }
+      const ddd = document.getElementById('declDD').value.trim();
+      const dmm = document.getElementById('declMM').value.trim();
+      const dyy = document.getElementById('declYYYY').value.trim();
+      if (!ddd || !dmm || !dyy) { ['declDD','declMM','declYYYY'].forEach(id => markInvalid(id, true)); showErr('declDate', true); errors.push('Date'); }
+    }
+
+    if (errors.length) showSummary(idx, errors);
+    return errors.length === 0;
+  }
+
+  function nextStep(idx) {
+    if (validateStep(idx)) {
+      cur++;
+      updateUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (cur === 6) { setTimeout(initCanvas, 100); }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function submitForm() {
+    if (validateStep(6)) {
+      cur = total;
+      updateUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  // ---- File upload ----
   function handleFile(inputId, previewId, zoneId, nameId) {
     const file = document.getElementById(inputId).files[0];
     if (!file) return;
     document.getElementById(nameId).textContent = file.name;
     document.getElementById(previewId).classList.add('show');
-    document.getElementById(zoneId).classList.add('has-file');
-    // prevent click on zone from re-opening dialog when file already chosen
-    document.getElementById(zoneId).style.pointerEvents = 'none';
+    const zone = document.getElementById(zoneId);
+    zone.classList.add('has-file');
+    zone.classList.remove('invalid-zone');
+    zone.style.pointerEvents = 'none';
+    // clear error
+    const errId = 'e-' + inputId;
+    const errEl = document.getElementById(errId);
+    if (errEl) errEl.classList.remove('show');
   }
 
   function removeFile(inputId, previewId, zoneId) {
     document.getElementById(inputId).value = '';
     document.getElementById(previewId).classList.remove('show');
-    document.getElementById(zoneId).classList.remove('has-file');
-    document.getElementById(zoneId).style.pointerEvents = '';
+    const zone = document.getElementById(zoneId);
+    zone.classList.remove('has-file');
+    zone.style.pointerEvents = '';
     event.stopPropagation();
   }
 
-  // Drag & drop support
+  // Drag & drop
   ['panZone','idZone','sigZone'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -1061,8 +1514,9 @@
     });
   });
 
-  /* Signature tabs */
+  // ---- Signature ----
   function switchSigTab(tab, btn) {
+    currentSigTab = tab;
     document.querySelectorAll('.sig-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.sig-panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
@@ -1070,7 +1524,6 @@
     if (tab === 'draw') initCanvas();
   }
 
-  /* Signature canvas */
   let drawing = false, lastX = 0, lastY = 0, hasSig = false;
 
   function initCanvas() {
