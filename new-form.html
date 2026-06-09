@@ -401,9 +401,9 @@
     <div class="err-msg" id="e-emailGroup" style="margin-top:-12px; margin-bottom:20px;">Please provide at least one email address.</div>
     <p class="email-group-note">Either your personal email or your executive assistant's email is sufficient. Both are welcome.</p>
 
-    <div class="field"><label>Mobile Number </label><input type="tel" id="mobile" placeholder="+91 XXXXX XXXXX"><div class="err-msg" id="e-mobile">Mobile number is required.</div></div>
-    <div class="field"><label>Residential Address </label><textarea id="address" placeholder="Street, area, city, state"></textarea><div class="err-msg" id="e-address">Address is required.</div></div>
-    <div class="field"><label>Pincode </label><input type="text" id="pincode" placeholder="6-digit pincode" maxlength="6" style="max-width: 200px;"><div class="err-msg" id="e-pincode">Please enter a valid 6-digit pincode.</div></div>
+    <div class="field"><label>Mobile Number <span class="opt-badge">Optional</span></label><input type="tel" id="mobile" placeholder="+91 XXXXX XXXXX"></div>
+    <div class="field"><label>Residential Address <span class="opt-badge">Optional</span></label><textarea id="address" placeholder="Street, area, city, state"></textarea></div>
+    <div class="field"><label>Pincode <span class="opt-badge">Optional</span></label><input type="text" id="pincode" placeholder="6-digit pincode" maxlength="6" style="max-width: 200px;"></div>
 
     <div class="nav"><button class="btn" onclick="prev()">← Back</button><span class="step-count">Step 3 of 7</span><button class="btn primary" onclick="nextStep(2)">Continue →</button></div>
   </div>
@@ -783,7 +783,7 @@
         }
       }
 
-     
+    }
 
     if (idx === 3) {
       if (!document.querySelector('input[name="idtype"]:checked')) { markRadioInvalid('idtype', true); showErr('idtype', true); errors.push('ID Proof Type'); }
