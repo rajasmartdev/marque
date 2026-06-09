@@ -3,28 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Membership Application Form</title>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+<title>The Marque — Membership Application</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --cream: #f0ede0;
-    --cream-dark: #e5e1d0;
-    --ink: #1a1814;
-    --ink-light: #4a4540;
-    --ink-muted: #7a7570;
-    --gold: #8b6914;
-    --gold-light: #c4a44a;
-    --gold-pale: #f5edd5;
-    --border: rgba(26,24,20,0.15);
-    --border-strong: rgba(26,24,20,0.3);
-    --accent: #2d3a2e;
-    --accent-light: #e8ede8;
-    --error: #b83232;
-    --error-bg: #fdf2f2;
-    --radius: 4px;
-    --optional-color: #7a7570;
+    --cream: #f5f2e9;
+    --cream-card: #faf8f3;
+    --cream-dark: #ebe7d8;
+    --ink: #18160f;
+    --ink-light: #4a4538;
+    --ink-muted: #7c7668;
+    --gold: #9a7518;
+    --gold-mid: #c4a030;
+    --gold-pale: #f8f0da;
+    --gold-border: rgba(196,160,48,0.35);
+    --border: rgba(24,22,15,0.12);
+    --border-med: rgba(24,22,15,0.22);
+    --border-strong: rgba(24,22,15,0.32);
+    --accent: #263627;
+    --accent-mid: #3a5239;
+    --accent-pale: #eaf0ea;
+    --error: #a82828;
+    --error-pale: #fdf0f0;
+    --radius: 3px;
   }
 
   body {
@@ -35,99 +38,377 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 16px 60px;
+    padding: 0 0 80px;
   }
 
-  .masthead { text-align: center; margin-bottom: 40px; }
-  .masthead-rule { display: flex; align-items: center; gap: 16px; justify-content: center; margin-bottom: 12px; }
-  .masthead-rule hr { border: none; border-top: 1px solid var(--gold-light); width: 60px; }
-  .masthead-diamond { width: 8px; height: 8px; background: var(--gold-light); transform: rotate(45deg); }
-  .masthead h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; font-size: 32px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); }
-  .masthead p { font-size: 14px; color: var(--ink-muted); margin-top: 6px; font-style: italic; letter-spacing: 0.04em; }
+  /* ── Masthead ── */
+  .masthead {
+    width: 100%;
+    background: #0e0d09;
+    padding: 28px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
 
-  .card { background: #faf8f2; border: 1px solid var(--border-strong); width: 100%; max-width: 680px; padding: 40px 48px; }
-  @media (max-width: 600px) { .card { padding: 28px 20px; } }
+  .masthead img { width: 220px; display: block; }
 
-  .field-legend { display: flex; align-items: center; gap: 20px; font-size: 12px; color: var(--ink-muted); margin-bottom: 24px; padding: 8px 12px; background: var(--cream); border: 1px solid var(--border); border-radius: var(--radius); font-style: italic; }
-  .legend-item { display: flex; align-items: center; gap: 5px; }
-  .req-star { color: var(--error); font-size: 14px; font-style: normal; }
-  .opt-tag { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--optional-color); background: var(--cream-dark); padding: 1px 6px; border-radius: 2px; font-style: normal; }
+  .masthead-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold-mid);
+  }
 
+  .masthead-rule {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 180px;
+  }
+
+  .masthead-rule hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid rgba(196,160,48,0.35);
+  }
+
+  .masthead-diamond {
+    width: 5px;
+    height: 5px;
+    background: var(--gold-mid);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ── Card ── */
+  .card {
+    width: 100%;
+    max-width: 660px;
+    background: var(--cream-card);
+    border: 1px solid var(--border-med);
+    padding: 40px 48px 48px;
+    margin: 0 16px;
+  }
+
+  @media (max-width: 600px) {
+    .card { padding: 28px 20px 36px; margin: 0 12px; }
+  }
+
+  /* ── Progress ── */
   .progress-wrap { margin-bottom: 36px; }
-  .steps-track { display: flex; align-items: center; gap: 0; position: relative; }
-  .step-node { display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; cursor: pointer; }
-  .step-node::before { content: ''; position: absolute; top: 14px; left: 50%; width: 100%; height: 1px; background: var(--border-strong); z-index: 0; }
-  .step-node:last-child::before { display: none; }
-  .step-num { width: 28px; height: 28px; border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; font-size: 12px; font-family: 'Cormorant Garamond', serif; font-weight: 500; background: var(--cream); position: relative; z-index: 1; transition: all 0.3s; letter-spacing: 0; }
-  .step-node.active .step-num { background: var(--ink); color: var(--cream); border-color: var(--ink); }
-  .step-node.done .step-num { background: var(--accent); color: #fff; border-color: var(--accent); font-size: 14px; }
-  .step-lbl { font-size: 10px; margin-top: 5px; color: var(--ink-muted); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; font-family: 'EB Garamond', serif; }
-  .step-node.active .step-lbl { color: var(--ink); font-weight: 500; }
-  .step-node.done .step-lbl { color: var(--accent); }
-  .progress-bar-bg { height: 1px; background: var(--border); margin-top: 16px; position: relative; overflow: hidden; }
-  .progress-bar-fill { height: 100%; background: var(--gold-light); transition: width 0.4s ease; }
 
+  .steps-track {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .step-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+    cursor: pointer;
+    gap: 6px;
+  }
+
+  .step-node::after {
+    content: '';
+    position: absolute;
+    top: 13px;
+    left: calc(50% + 14px);
+    right: calc(-50% + 14px);
+    height: 1px;
+    background: var(--border-med);
+    z-index: 0;
+  }
+
+  .step-node:last-child::after { display: none; }
+
+  .step-num {
+    width: 26px;
+    height: 26px;
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    background: var(--cream);
+    position: relative;
+    z-index: 1;
+    transition: all 0.25s;
+    color: var(--ink-muted);
+    flex-shrink: 0;
+  }
+
+  .step-node.active .step-num {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+
+  .step-node.done .step-num {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    font-size: 12px;
+  }
+
+  .step-lbl {
+    font-size: 9px;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-family: 'EB Garamond', serif;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .step-node.active .step-lbl { color: var(--ink); }
+  .step-node.done .step-lbl { color: var(--accent); }
+
+  .progress-bar-bg {
+    height: 2px;
+    background: var(--border);
+    margin-top: 18px;
+    border-radius: 1px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--gold-mid));
+    transition: width 0.45s ease;
+    border-radius: 1px;
+  }
+
+  /* ── Field Legend ── */
+  .field-legend {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-bottom: 28px;
+    padding: 9px 14px;
+    background: var(--cream-dark);
+    border: 1px solid var(--border);
+    font-style: italic;
+  }
+
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .req-star { color: var(--error); font-size: 15px; font-style: normal; line-height: 1; }
+  .opt-tag {
+    font-size: 9px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    background: var(--border);
+    background: rgba(24,22,15,0.09);
+    padding: 2px 7px;
+    font-style: normal;
+  }
+
+  /* ── Sections ── */
   .section { display: none; animation: fadeIn 0.3s ease; }
   .section.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-  .section-head { border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 28px; }
-  .section-head h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 22px; letter-spacing: 0.06em; }
-  .section-head p { font-size: 14px; color: var(--ink-muted); margin-top: 4px; font-style: italic; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-  .field { margin-bottom: 20px; }
-  .field label { display: flex; align-items: center; gap: 6px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 7px; font-family: 'EB Garamond', serif; }
-  .field label .req-mark { color: var(--error); font-size: 16px; line-height: 1; font-style: normal; letter-spacing: 0; text-transform: none; }
-  .field label .opt-badge { font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--optional-color); background: var(--cream-dark); padding: 1px 6px; border-radius: 2px; font-style: normal; font-weight: 400; }
+  /* ── Section header ── */
+  .section-head {
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-med);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
 
-  input[type=text], input[type=email], input[type=tel], select, textarea { width: 100%; padding: 9px 12px; border: 1px solid var(--border-strong); border-radius: var(--radius); background: transparent; font-family: 'EB Garamond', serif; font-size: 16px; color: var(--ink); outline: none; transition: border-color 0.2s; }
-  input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(139,105,20,0.1); }
-  input.invalid, select.invalid, textarea.invalid { border-color: var(--error) !important; background: var(--error-bg); box-shadow: 0 0 0 2px rgba(184,50,50,0.08) !important; }
-  textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
-  select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a4540' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; }
+  .section-head h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+
+  .section-head p {
+    font-size: 14px;
+    color: var(--ink-muted);
+    font-style: italic;
+  }
+
+  /* ── Fields ── */
+  .field { margin-bottom: 22px; }
+
+  .field label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 8px;
+    font-family: 'EB Garamond', serif;
+    font-weight: 500;
+  }
+
+  .req-mark { color: var(--error); font-size: 15px; line-height: 1; font-style: normal; letter-spacing: 0; text-transform: none; }
+  .opt-badge {
+    font-size: 9px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    background: rgba(24,22,15,0.08);
+    padding: 2px 7px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  input[type=text],
+  input[type=email],
+  input[type=tel],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1px solid var(--border-med);
+    border-radius: var(--radius);
+    background: transparent;
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--gold-mid);
+    box-shadow: 0 0 0 3px rgba(196,160,48,0.12);
+  }
+
+  input.invalid, select.invalid, textarea.invalid {
+    border-color: var(--error) !important;
+    background: var(--error-pale);
+    box-shadow: 0 0 0 3px rgba(168,40,40,0.07) !important;
+  }
+
+  textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a4538' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 13px center;
+    padding-right: 38px;
+    cursor: pointer;
+  }
 
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-  @media (max-width: 480px) { .row2, .row3 { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .row2 { grid-template-columns: 1fr; } }
 
-  .dob-wrap { display: flex; align-items: center; gap: 8px; }
+  /* ── DOB ── */
+  .dob-wrap { display: flex; align-items: center; gap: 10px; }
   .dob-wrap input { flex: 1; text-align: center; }
-  .dob-sep { color: var(--ink-muted); font-size: 20px; font-weight: 300; }
+  .dob-sep { color: var(--ink-muted); font-size: 22px; font-weight: 300; flex-shrink: 0; }
 
+  /* ── Radio / checkbox pills ── */
   .options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
-  .opt-pill { display: inline-flex; align-items: center; gap: 7px; padding: 6px 14px; border: 1px solid var(--border-strong); border-radius: 2px; font-size: 15px; font-family: 'EB Garamond', serif; cursor: pointer; background: transparent; color: var(--ink-light); transition: all 0.15s; user-select: none; }
-  .opt-pill input[type=radio], .opt-pill input[type=checkbox] { width: 14px; height: 14px; accent-color: var(--ink); cursor: pointer; flex-shrink: 0; }
-  .opt-pill:has(input:checked) { background: var(--ink); color: var(--cream); border-color: var(--ink); }
 
+  .opt-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    border: 1px solid var(--border-med);
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-family: 'EB Garamond', serif;
+    cursor: pointer;
+    background: transparent;
+    color: var(--ink-light);
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .opt-pill input[type=radio],
+  .opt-pill input[type=checkbox] {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--ink);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .opt-pill:has(input:checked) {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+
+  /* ── Check list ── */
   .check-list { display: flex; flex-direction: column; gap: 8px; margin-top: 2px; }
-  .check-item { display: flex; align-items: center; gap: 10px; padding: 8px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 16px; font-family: 'EB Garamond', serif; cursor: pointer; background: transparent; color: var(--ink-light); transition: all 0.15s; user-select: none; }
-  .check-item input[type=checkbox] { width: 15px; height: 15px; accent-color: var(--ink); cursor: pointer; flex-shrink: 0; }
-  .check-item:has(input:checked) { background: var(--gold-pale); border-color: var(--gold-light); color: var(--ink); }
 
-  .err-msg { display: none; font-size: 12px; color: var(--error); font-style: italic; margin-top: 5px; align-items: center; gap: 4px; }
-  .err-msg.show { display: flex; }
-  .err-msg::before { content: '⚠'; font-size: 11px; font-style: normal; }
-
-  .val-summary { display: none; background: var(--error-bg); border: 1px solid rgba(184,50,50,0.3); border-left: 3px solid var(--error); padding: 12px 16px; font-size: 14px; color: var(--error); margin-bottom: 20px; border-radius: var(--radius); animation: shake 0.4s ease; }
-  .val-summary.show { display: block; }
-  .val-summary strong { display: block; margin-bottom: 4px; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; }
-  @keyframes shake { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-4px); } 40%,80% { transform: translateX(4px); } }
-
-  /* Email or group styling */
-  .email-or-group {
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
     border: 1px solid var(--border);
     border-radius: var(--radius);
+    font-size: 16px;
+    font-family: 'EB Garamond', serif;
+    cursor: pointer;
+    background: transparent;
+    color: var(--ink-light);
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .check-item input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--accent);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .check-item:has(input:checked) {
+    background: var(--gold-pale);
+    border-color: var(--gold-border);
+    color: var(--ink);
+  }
+
+  /* ── OR group (email, phone) ── */
+  .or-group {
+    border: 1px solid var(--border-med);
+    border-radius: var(--radius);
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
 
-  .email-or-group.invalid-group {
+  .or-group.invalid-group {
     border-color: var(--error);
-    box-shadow: 0 0 0 2px rgba(184,50,50,0.08);
+    box-shadow: 0 0 0 3px rgba(168,40,40,0.07);
   }
 
-  .email-or-group-header {
-    background: var(--cream);
+  .or-group-header {
+    background: var(--cream-dark);
     border-bottom: 1px solid var(--border);
     padding: 10px 16px;
     display: flex;
@@ -135,167 +416,439 @@
     gap: 8px;
   }
 
-  .email-or-group-header .req-mark { color: var(--error); font-size: 16px; line-height: 1; }
-
-  .email-or-group-title {
-    font-size: 12px;
-    letter-spacing: 0.1em;
+  .or-group-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ink-light);
     font-family: 'EB Garamond', serif;
     font-weight: 500;
   }
 
-  .email-or-label {
+  .or-divider {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 6px 16px;
+    gap: 10px;
+    padding: 4px 16px;
     background: var(--gold-pale);
-    border-bottom: 1px solid rgba(196,164,74,0.3);
+    border-top: 1px solid var(--gold-border);
+    border-bottom: 1px solid var(--gold-border);
     font-size: 10px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--gold);
     font-family: 'EB Garamond', serif;
   }
 
-  .email-or-label::before,
-  .email-or-label::after {
+  .or-divider::before, .or-divider::after {
     content: '';
     flex: 1;
     height: 1px;
-    background: rgba(196,164,74,0.4);
+    background: var(--gold-border);
   }
 
-  .email-or-group-inner {
-    padding: 16px 16px 4px;
+  .or-group-inner {
+    padding: 18px 16px 4px;
   }
 
-  .email-or-group-inner .field {
-    margin-bottom: 16px;
-  }
+  .or-group-inner .field { margin-bottom: 16px; }
 
-  .email-or-group-inner .field:last-child {
-    margin-bottom: 16px;
-  }
-
-  /* ── helper note under the group ── */
-  .email-group-note {
+  .group-note {
     font-size: 12px;
     color: var(--ink-muted);
     font-style: italic;
-    margin-top: -12px;
-    margin-bottom: 20px;
+    margin-top: -14px;
+    margin-bottom: 22px;
     padding-left: 2px;
   }
 
-  .consent-box { border: 1px solid var(--border); border-left: 3px solid var(--gold-light); padding: 16px 18px; font-size: 15px; line-height: 1.8; color: var(--ink-light); margin-bottom: 24px; font-style: italic; background: var(--gold-pale); }
+  /* ── Errors ── */
+  .err-msg {
+    display: none;
+    font-size: 12px;
+    color: var(--error);
+    font-style: italic;
+    margin-top: 6px;
+    align-items: center;
+    gap: 5px;
+  }
 
-  .nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); gap: 12px; }
-  .btn { font-family: 'EB Garamond', serif; font-size: 15px; letter-spacing: 0.08em; padding: 9px 28px; border: 1px solid var(--border-strong); background: transparent; color: var(--ink); cursor: pointer; border-radius: var(--radius); transition: all 0.2s; text-transform: uppercase; }
-  .btn:hover { background: var(--cream-dark); }
-  .btn.primary { background: var(--ink); color: var(--cream); border-color: var(--ink); }
-  .btn.primary:hover { background: #2e2b24; }
-  .btn.submit { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .btn.submit:hover { background: #1f2a20; }
-  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .err-msg.show { display: flex; }
+  .err-msg::before { content: '⚠'; font-size: 11px; font-style: normal; }
 
-  .step-count { font-size: 13px; color: var(--ink-muted); font-style: italic; letter-spacing: 0.04em; }
+  .val-summary {
+    display: none;
+    background: var(--error-pale);
+    border: 1px solid rgba(168,40,40,0.25);
+    border-left: 3px solid var(--error);
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--error);
+    margin-bottom: 24px;
+    border-radius: var(--radius);
+    animation: shake 0.35s ease;
+  }
 
-  .success-wrap { text-align: center; padding: 40px 20px; }
-  .success-icon { width: 64px; height: 64px; border: 2px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 28px; color: var(--accent); }
-  .success-wrap h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 26px; letter-spacing: 0.08em; margin-bottom: 12px; }
-  .success-wrap p { font-size: 15px; color: var(--ink-muted); font-style: italic; line-height: 1.7; max-width: 400px; margin: 0 auto; }
+  .val-summary.show { display: block; }
+  .val-summary strong { display: block; margin-bottom: 5px; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
 
-  .divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
-  .helper { font-size: 13px; color: var(--ink-muted); font-style: italic; margin-top: 5px; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20%,60%  { transform: translateX(-4px); }
+    40%,80%  { transform: translateX(4px); }
+  }
 
-  .upload-zone { border: 1.5px dashed var(--border-strong); border-radius: var(--radius); padding: 24px 16px; text-align: center; cursor: pointer; transition: all 0.2s; background: transparent; position: relative; }
-  .upload-zone:hover { border-color: var(--gold); background: var(--gold-pale); }
-  .upload-zone.has-file { border-style: solid; border-color: var(--accent); background: var(--accent-light); }
-  .upload-zone.invalid-zone { border-color: var(--error); background: var(--error-bg); }
+  /* ── Upload zones ── */
+  .upload-zone {
+    border: 1.5px dashed var(--border-strong);
+    border-radius: var(--radius);
+    padding: 22px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+    position: relative;
+  }
+
+  .upload-zone:hover { border-color: var(--gold-mid); background: var(--gold-pale); }
+  .upload-zone.has-file { border-style: solid; border-color: var(--accent); background: var(--accent-pale); }
+  .upload-zone.invalid-zone { border-color: var(--error); background: var(--error-pale); }
   .upload-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-  .upload-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+  .upload-icon { font-size: 26px; margin-bottom: 7px; display: block; }
   .upload-text { font-size: 14px; color: var(--ink-light); }
   .upload-text strong { color: var(--gold); font-weight: 500; }
   .upload-sub { font-size: 12px; color: var(--ink-muted); margin-top: 4px; font-style: italic; }
 
-  .file-preview { display: none; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--accent); border-radius: var(--radius); background: var(--accent-light); margin-top: 8px; font-size: 14px; }
+  .file-preview {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    background: var(--accent-pale);
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
   .file-preview.show { display: flex; }
   .file-preview-name { flex: 1; color: var(--accent); font-style: italic; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .file-preview-remove { background: none; border: none; cursor: pointer; color: var(--ink-muted); font-size: 18px; line-height: 1; padding: 0 2px; flex-shrink: 0; }
-  .file-preview-remove:hover { color: #c0392b; }
+  .file-preview-remove:hover { color: var(--error); }
 
-  .sig-tabs { display: flex; gap: 0; margin-bottom: 12px; border: 1px solid var(--border-strong); border-radius: var(--radius); overflow: hidden; width: fit-content; }
-  .sig-tab { padding: 7px 20px; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; border: none; background: transparent; color: var(--ink-muted); font-family: 'EB Garamond', serif; transition: all 0.2s; border-right: 1px solid var(--border-strong); }
+  /* ── Signature ── */
+  .sig-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 12px;
+    border: 1px solid var(--border-med);
+    border-radius: var(--radius);
+    overflow: hidden;
+    width: fit-content;
+  }
+
+  .sig-tab {
+    padding: 7px 22px;
+    font-size: 12px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--ink-muted);
+    font-family: 'EB Garamond', serif;
+    transition: all 0.2s;
+    border-right: 1px solid var(--border-med);
+  }
+
   .sig-tab:last-child { border-right: none; }
   .sig-tab.active { background: var(--ink); color: var(--cream); }
+
   .sig-panel { display: none; }
   .sig-panel.active { display: block; }
-  .sig-canvas-wrap { border: 1px solid var(--border-strong); border-radius: var(--radius); background: #fff; position: relative; overflow: hidden; }
+
+  .sig-canvas-wrap {
+    border: 1px solid var(--border-med);
+    border-radius: var(--radius);
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
   #sigCanvas { display: block; width: 100%; height: 140px; cursor: crosshair; touch-action: none; }
-  .sig-placeholder { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ccc; font-size: 14px; font-style: italic; pointer-events: none; white-space: nowrap; }
+
+  .sig-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ccc;
+    font-size: 14px;
+    font-style: italic;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
   .sig-actions { display: flex; gap: 10px; margin-top: 8px; }
-  .sig-btn { font-family: 'EB Garamond', serif; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 16px; border: 1px solid var(--border-strong); background: transparent; color: var(--ink-light); cursor: pointer; border-radius: var(--radius); transition: all 0.15s; }
+
+  .sig-btn {
+    font-family: 'EB Garamond', serif;
+    font-size: 12px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border: 1px solid var(--border-med);
+    background: transparent;
+    color: var(--ink-light);
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: all 0.15s;
+  }
+
   .sig-btn:hover { background: var(--cream-dark); }
 
-  .child-section { margin-top: 8px; border: 1px solid var(--border); border-left: 3px solid var(--gold-light); padding: 20px 20px 4px; background: var(--gold-pale); border-radius: 0 var(--radius) var(--radius) 0; display: none; animation: fadeIn 0.3s ease; }
+  /* ── Nominee child section ── */
+  .child-section {
+    margin-top: 8px;
+    border: 1px solid var(--gold-border);
+    border-left: 3px solid var(--gold-mid);
+    padding: 20px 20px 4px;
+    background: var(--gold-pale);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
   .child-section.show { display: block; }
-  .child-section-title { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 400; letter-spacing: 0.06em; color: var(--ink-light); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 
-  .membership-info-box { border: 1px solid var(--border-strong); border-left: 3px solid var(--accent); padding: 20px 22px; margin-bottom: 28px; background: var(--accent-light); border-radius: 0 var(--radius) var(--radius) 0; }
-  .membership-info-title { font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 10px; }
-  .membership-intro { font-size: 15px; color: var(--ink); line-height: 1.6; margin-bottom: 12px; }
-  .membership-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
-  .membership-bullets li { font-size: 14px; color: var(--ink-light); line-height: 1.6; padding-left: 16px; position: relative; }
-  .membership-bullets li::before { content: '•'; position: absolute; left: 0; color: var(--accent); font-size: 14px; }
+  .child-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--ink-light);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--gold-border);
+  }
 
-  .declaration-check-label { display: flex !important; align-items: flex-start !important; gap: 12px !important; padding: 16px 18px; border: 1px solid var(--border-strong); border-radius: var(--radius); cursor: pointer; background: transparent; transition: all 0.2s; font-size: 15px !important; color: var(--ink-light) !important; line-height: 1.7 !important; text-transform: none !important; letter-spacing: 0 !important; font-style: italic; font-weight: 400 !important; }
-  .declaration-check-label:has(input:checked) { background: var(--gold-pale); border-color: var(--gold-light); color: var(--ink) !important; }
-  .declaration-check-label input[type=checkbox] { width: 16px !important; height: 16px !important; flex-shrink: 0; margin-top: 3px; accent-color: var(--accent); cursor: pointer; }
+  /* ── Membership info box ── */
+  .membership-info-box {
+    border: 1px solid var(--border-med);
+    border-left: 3px solid var(--accent);
+    padding: 20px 22px;
+    margin-bottom: 28px;
+    background: var(--accent-pale);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
 
-  .reorder-note { background: var(--accent-light); border: 1px solid rgba(45,58,46,0.2); border-left: 3px solid var(--accent); padding: 10px 14px; font-size: 13px; color: var(--accent); font-style: italic; margin-bottom: 20px; border-radius: 0 var(--radius) var(--radius) 0; }
+  .membership-info-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .membership-intro {
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .membership-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+  .membership-bullets li { font-size: 14px; color: var(--ink-light); line-height: 1.6; padding-left: 18px; position: relative; }
+  .membership-bullets li::before { content: '·'; position: absolute; left: 5px; color: var(--accent-mid); font-size: 20px; line-height: 1; top: -1px; }
+
+  /* ── Declaration checkbox ── */
+  .declaration-label {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 13px !important;
+    padding: 16px 18px;
+    border: 1px solid var(--border-med);
+    border-radius: var(--radius);
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s;
+    font-size: 15px !important;
+    color: var(--ink-light) !important;
+    line-height: 1.7 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-style: italic;
+    font-weight: 400 !important;
+  }
+
+  .declaration-label:has(input:checked) {
+    background: var(--gold-pale);
+    border-color: var(--gold-border);
+    color: var(--ink) !important;
+  }
+
+  .declaration-label input[type=checkbox] {
+    width: 16px !important;
+    height: 16px !important;
+    flex-shrink: 0;
+    margin-top: 4px;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+
+  /* ── Navigation ── */
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    gap: 12px;
+  }
+
+  .btn {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    padding: 10px 30px;
+    border: 1px solid var(--border-strong);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+
+  .btn:hover { background: var(--cream-dark); }
+
+  .btn.primary {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+
+  .btn.primary:hover { background: #2c2a20; }
+
+  .btn.submit {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .btn.submit:hover { background: var(--accent-mid); }
+
+  .step-count {
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-style: italic;
+    letter-spacing: 0.04em;
+  }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .helper { font-size: 13px; color: var(--ink-muted); font-style: italic; margin-top: 5px; }
+
+  /* ── Success ── */
+  .success-wrap { text-align: center; padding: 48px 20px 20px; }
+
+  .success-icon {
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--accent-mid);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 26px;
+    color: var(--accent-mid);
+  }
+
+  .success-wrap h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 28px;
+    letter-spacing: 0.07em;
+    margin-bottom: 14px;
+  }
+
+  .success-wrap p {
+    font-size: 15px;
+    color: var(--ink-muted);
+    font-style: italic;
+    line-height: 1.8;
+    max-width: 400px;
+    margin: 0 auto;
+  }
 </style>
 </head>
 <body>
 
 <div class="masthead">
-  <img src="https://www.themarque.club/images/The%20Marque%20Logo_Wide.png" style="width:260px; padding:10px 20px; border-radius:15px; background:#000">
+  <img src="https://www.themarque.club/images/The%20Marque%20Logo_Wide.png" alt="The Marque">
+  <div class="masthead-rule"><hr><div class="masthead-diamond"></div><hr></div>
+  <div class="masthead-title">Membership Application</div>
 </div>
-<p>Onboarding Form</p>
+
 <div class="card">
 
   <!-- Progress -->
   <div class="progress-wrap">
     <div class="steps-track">
-      <div class="step-node active" id="node0" onclick="goTo(0)"><div class="step-num" id="num0">1</div><span class="step-lbl">Personal</span></div>
-      <div class="step-node" id="node1" onclick="goTo(1)"><div class="step-num" id="num1">2</div><span class="step-lbl">Professional</span></div>
-      <div class="step-node" id="node2" onclick="goTo(2)"><div class="step-num" id="num2">3</div><span class="step-lbl">Contact</span></div>
-      <div class="step-node" id="node3" onclick="goTo(3)"><div class="step-num" id="num3">4</div><span class="step-lbl">Identity</span></div>
-      <div class="step-node" id="node4" onclick="goTo(4)"><div class="step-num" id="num4">5</div><span class="step-lbl">Nominee</span></div>
-      <div class="step-node" id="node5" onclick="goTo(5)"><div class="step-num" id="num5">6</div><span class="step-lbl">Interests</span></div>
-      <div class="step-node" id="node6" onclick="goTo(6)"><div class="step-num" id="num6">7</div><span class="step-lbl">Declaration</span></div>
+      <div class="step-node active" id="node0" onclick="goTo(0)">
+        <div class="step-num" id="num0">1</div>
+        <span class="step-lbl">Personal</span>
+      </div>
+      <div class="step-node" id="node1" onclick="goTo(1)">
+        <div class="step-num" id="num1">2</div>
+        <span class="step-lbl">Professional</span>
+      </div>
+      <div class="step-node" id="node2" onclick="goTo(2)">
+        <div class="step-num" id="num2">3</div>
+        <span class="step-lbl">Contact</span>
+      </div>
+      <div class="step-node" id="node3" onclick="goTo(3)">
+        <div class="step-num" id="num3">4</div>
+        <span class="step-lbl">Identity</span>
+      </div>
+      <div class="step-node" id="node4" onclick="goTo(4)">
+        <div class="step-num" id="num4">5</div>
+        <span class="step-lbl">Nominee</span>
+      </div>
+      <div class="step-node" id="node5" onclick="goTo(5)">
+        <div class="step-num" id="num5">6</div>
+        <span class="step-lbl">Interests</span>
+      </div>
+      <div class="step-node" id="node6" onclick="goTo(6)">
+        <div class="step-num" id="num6">7</div>
+        <span class="step-lbl">Declaration</span>
+      </div>
     </div>
-    <div class="progress-bar-bg" style="margin-top:20px">
+    <div class="progress-bar-bg">
       <div class="progress-bar-fill" id="pbar" style="width:0%"></div>
     </div>
   </div>
 
   <!-- Legend -->
   <div class="field-legend">
-    <div class="legend-item"><span class="req-star">*</span> Required field</div>
-    <div class="legend-item"><span class="opt-tag">Optional</span> Optional field</div>
+    <div class="legend-item"><span class="req-star">*</span> Required</div>
+    <div class="legend-item"><span class="opt-tag">Optional</span> Optional</div>
   </div>
 
   <!-- ======== Step 1: Personal ======== -->
   <div class="section active" id="s0">
-    <div class="section-head"><h2>Personal Information</h2><p>Primary member details</p></div>
+    <div class="section-head">
+      <h2>Personal Information</h2>
+      <p>Primary member details</p>
+    </div>
     <div class="val-summary" id="vs0"></div>
 
     <div class="field" id="f-title">
       <label>Title <span class="req-mark">*</span></label>
-      <div class="options" id="opts-title">
+      <div class="options">
         <label class="opt-pill"><input type="radio" name="title" value="Mr"> Mr</label>
         <label class="opt-pill"><input type="radio" name="title" value="Ms"> Ms</label>
         <label class="opt-pill"><input type="radio" name="title" value="Mrs"> Mrs</label>
@@ -306,13 +859,21 @@
     </div>
 
     <div class="row2">
-      <div class="field"><label>First Name <span class="req-mark">*</span></label><input type="text" id="firstName" placeholder="First name"><div class="err-msg" id="e-firstName">First name is required.</div></div>
-      <div class="field"><label>Last Name <span class="req-mark">*</span></label><input type="text" id="lastName" placeholder="Last name"><div class="err-msg" id="e-lastName">Last name is required.</div></div>
+      <div class="field">
+        <label>First Name <span class="req-mark">*</span></label>
+        <input type="text" id="firstName" placeholder="First name">
+        <div class="err-msg" id="e-firstName">First name is required.</div>
+      </div>
+      <div class="field">
+        <label>Last Name <span class="req-mark">*</span></label>
+        <input type="text" id="lastName" placeholder="Last name">
+        <div class="err-msg" id="e-lastName">Last name is required.</div>
+      </div>
     </div>
 
     <div class="field" id="f-gender">
       <label>Gender <span class="req-mark">*</span></label>
-      <div class="options" id="opts-gender">
+      <div class="options">
         <label class="opt-pill"><input type="radio" name="gender" value="Male"> Male</label>
         <label class="opt-pill"><input type="radio" name="gender" value="Female"> Female</label>
         <label class="opt-pill"><input type="radio" name="gender" value="Other"> Other</label>
@@ -330,14 +891,18 @@
         <span class="dob-sep">/</span>
         <input type="text" id="dobYYYY" placeholder="YYYY" maxlength="4">
       </div>
-      <div class="err-msg" id="e-dob">Please enter a valid date of birth (DD/MM/YYYY).</div>
+      <div class="err-msg" id="e-dob">Please enter a valid date of birth (DD / MM / YYYY).</div>
     </div>
 
-    <div class="field"><label>Nationality <span class="req-mark">*</span></label><input type="text" id="nationality" placeholder="Your nationality"><div class="err-msg" id="e-nationality">Nationality is required.</div></div>
+    <div class="field">
+      <label>Nationality <span class="req-mark">*</span></label>
+      <input type="text" id="nationality" placeholder="Your nationality">
+      <div class="err-msg" id="e-nationality">Nationality is required.</div>
+    </div>
 
     <div class="field" id="f-rel">
       <label>Relationship Status <span class="req-mark">*</span></label>
-      <div class="options" id="opts-rel">
+      <div class="options">
         <label class="opt-pill"><input type="radio" name="rel" value="Single" onchange="handleRelChange()"> Single</label>
         <label class="opt-pill"><input type="radio" name="rel" value="Married" onchange="handleRelChange()"> Married</label>
         <label class="opt-pill"><input type="radio" name="rel" value="Domestic Partnership" onchange="handleRelChange()"> Domestic Partnership</label>
@@ -357,65 +922,122 @@
       </div>
     </div>
 
-    <div class="nav"><span class="step-count">Step 1 of 7</span><button class="btn primary" onclick="nextStep(0)">Continue →</button></div>
+    <div class="nav">
+      <span class="step-count">Step 1 of 7</span>
+      <button class="btn primary" onclick="nextStep(0)">Continue →</button>
+    </div>
   </div>
 
   <!-- ======== Step 2: Professional ======== -->
   <div class="section" id="s1">
-    <div class="section-head"><h2>Professional Details</h2><p>Your occupation and workplace</p></div>
+    <div class="section-head">
+      <h2>Professional Details</h2>
+      <p>Your occupation and workplace</p>
+    </div>
     <div class="val-summary" id="vs1"></div>
 
-    <div class="field"><label>Designation <span class="req-mark">*</span></label><input type="text" id="designation" placeholder="Your job title or role"><div class="err-msg" id="e-designation">Designation is required.</div></div>
-    <div class="field"><label>Company / Organisation <span class="req-mark">*</span></label><input type="text" id="company" placeholder="Name of your company or organisation"><div class="err-msg" id="e-company">Company / Organisation is required.</div></div>
-    <div class="field"><label>Industry <span class="opt-badge">Optional</span></label><input type="text" id="industry" placeholder="E.g. Finance, Technology, Healthcare, Real Estate"></div>
+    <div class="field">
+      <label>Designation <span class="req-mark">*</span></label>
+      <input type="text" id="designation" placeholder="Your job title or role">
+      <div class="err-msg" id="e-designation">Designation is required.</div>
+    </div>
 
-    <div class="nav"><button class="btn" onclick="prev()">← Back</button><span class="step-count">Step 2 of 7</span><button class="btn primary" onclick="nextStep(1)">Continue →</button></div>
+    <div class="field">
+      <label>Company / Organisation <span class="req-mark">*</span></label>
+      <input type="text" id="company" placeholder="Name of your company or organisation">
+      <div class="err-msg" id="e-company">Company / Organisation is required.</div>
+    </div>
+
+    <div class="field">
+      <label>Industry <span class="opt-badge">Optional</span></label>
+      <input type="text" id="industry" placeholder="E.g. Finance, Technology, Healthcare, Real Estate">
+    </div>
+
+    <div class="nav">
+      <button class="btn" onclick="prev()">← Back</button>
+      <span class="step-count">Step 2 of 7</span>
+      <button class="btn primary" onclick="nextStep(1)">Continue →</button>
+    </div>
   </div>
 
   <!-- ======== Step 3: Contact ======== -->
   <div class="section" id="s2">
     <div class="section-head">
       <h2>Contact Information</h2>
-      <p>How we may reach you — at least one email address is required</p>
+      <p>At least one email and one phone number are required</p>
     </div>
     <div class="val-summary" id="vs2"></div>
 
-    <!-- Email OR group — at least one required -->
-    <div class="email-or-group" id="emailOrGroup">
-      <div class="email-or-group-header">
-        <span class="email-or-group-title">Email Address</span>
+    <!-- Email OR group -->
+    <div class="or-group" id="emailOrGroup">
+      <div class="or-group-header">
+        <span class="or-group-title">Email Address</span>
         <span class="req-mark">*</span>
       </div>
-      <div class="email-or-group-inner">
+      <div class="or-group-inner">
         <div class="field">
-          <label>Your Email Address <span class="opt-badge">Optional if EA provided</span></label>
-          <input type="email" id="email" placeholder="you@example.com" oninput="clearEmailGroupError()">
+          <label>Your Email <span class="opt-badge">Optional if EA provided</span></label>
+          <input type="email" id="email" placeholder="you@example.com" oninput="clearOrGroupError('emailOrGroup','e-emailGroup')">
         </div>
-        <div class="email-or-label">or</div>
+        <div class="or-divider">or</div>
         <div class="field">
           <label>Executive Assistant Email <span class="opt-badge">Optional if yours provided</span></label>
-          <input type="email" id="eaEmail" placeholder="assistant@example.com" oninput="clearEmailGroupError()">
+          <input type="email" id="eaEmail" placeholder="assistant@example.com" oninput="clearOrGroupError('emailOrGroup','e-emailGroup')">
         </div>
       </div>
     </div>
-    <div class="err-msg" id="e-emailGroup" style="margin-top:-12px; margin-bottom:20px;">Please provide at least one email address.</div>
-    <p class="email-group-note">Either your personal email or your executive assistant's email is sufficient. Both are welcome.</p>
+    <div class="err-msg" id="e-emailGroup" style="margin-top:-14px; margin-bottom:22px;">Please provide at least one email address.</div>
+    <p class="group-note">Either your personal email or your executive assistant's is sufficient.</p>
 
-    <div class="field"><label>Mobile Number <span class="opt-badge">Optional</span></label><input type="tel" id="mobile" placeholder="+91 XXXXX XXXXX"></div>
-    <div class="field"><label>Residential Address <span class="opt-badge">Optional</span></label><textarea id="address" placeholder="Street, area, city, state"></textarea></div>
-    <div class="field"><label>Pincode <span class="opt-badge">Optional</span></label><input type="text" id="pincode" placeholder="6-digit pincode" maxlength="6" style="max-width: 200px;"></div>
+    <!-- Phone OR group -->
+    <div class="or-group" id="phoneOrGroup">
+      <div class="or-group-header">
+        <span class="or-group-title">Phone Number</span>
+        <span class="req-mark">*</span>
+      </div>
+      <div class="or-group-inner">
+        <div class="field">
+          <label>Your Mobile Number <span class="opt-badge">Optional if EA provided</span></label>
+          <input type="tel" id="mobile" placeholder="+91 XXXXX XXXXX" oninput="clearOrGroupError('phoneOrGroup','e-phoneGroup')">
+        </div>
+        <div class="or-divider">or</div>
+        <div class="field">
+          <label>Executive Assistant Mobile <span class="opt-badge">Optional if yours provided</span></label>
+          <input type="tel" id="eaMobile" placeholder="+91 XXXXX XXXXX" oninput="clearOrGroupError('phoneOrGroup','e-phoneGroup')">
+        </div>
+      </div>
+    </div>
+    <div class="err-msg" id="e-phoneGroup" style="margin-top:-14px; margin-bottom:22px;">Please provide at least one phone number.</div>
+    <p class="group-note">Either your mobile number or your executive assistant's is sufficient.</p>
 
-    <div class="nav"><button class="btn" onclick="prev()">← Back</button><span class="step-count">Step 3 of 7</span><button class="btn primary" onclick="nextStep(2)">Continue →</button></div>
+    <div class="field">
+      <label>Residential Address <span class="opt-badge">Optional</span></label>
+      <textarea id="address" placeholder="Street, area, city, state"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Pincode <span class="opt-badge">Optional</span></label>
+      <input type="text" id="pincode" placeholder="6-digit pincode" maxlength="6" style="max-width:200px;">
+    </div>
+
+    <div class="nav">
+      <button class="btn" onclick="prev()">← Back</button>
+      <span class="step-count">Step 3 of 7</span>
+      <button class="btn primary" onclick="nextStep(2)">Continue →</button>
+    </div>
   </div>
 
   <!-- ======== Step 4: Identity ======== -->
   <div class="section" id="s3">
-    <div class="section-head"><h2>Identity &amp; KYC</h2><p>Required for verification purposes</p></div>
+    <div class="section-head">
+      <h2>Identity &amp; KYC</h2>
+      <p>Required for verification purposes</p>
+    </div>
     <div class="val-summary" id="vs3"></div>
 
     <div class="field" id="f-idtype">
       <label>ID Proof Type <span class="req-mark">*</span></label>
-      <div class="options" id="opts-idtype">
+      <div class="options">
         <label class="opt-pill"><input type="radio" name="idtype" value="Aadhaar"> Aadhaar</label>
         <label class="opt-pill"><input type="radio" name="idtype" value="Passport"> Passport</label>
         <label class="opt-pill"><input type="radio" name="idtype" value="Driving License"> Driving License</label>
@@ -424,59 +1046,76 @@
       <div class="err-msg" id="e-idtype">Please select an ID proof type.</div>
     </div>
 
-    <div class="field"><label>ID Number <span class="req-mark">*</span></label><input type="text" id="idNumber" placeholder="Enter your ID number"><div class="err-msg" id="e-idNumber">ID number is required.</div></div>
+    <div class="field">
+      <label>ID Number <span class="req-mark">*</span></label>
+      <input type="text" id="idNumber" placeholder="Enter your ID number">
+      <div class="err-msg" id="e-idNumber">ID number is required.</div>
+    </div>
 
     <div class="field">
-      <label>Upload ID Proof <span class="req-mark">*</span> <span style="font-style:italic;font-weight:300;text-transform:none;letter-spacing:0;font-size:11px;">(JPG, PNG or PDF · max 5MB each)</span></label>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-        <div>
-          <div style="font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:6px; font-family:'EB Garamond',serif;">Front Side</div>
-          <div class="upload-zone" id="idFrontZone" onclick="document.getElementById('idFrontFile').click()">
-            <input type="file" id="idFrontFile" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFile('idFrontFile','idFrontPreview','idFrontZone','idFrontName')">
-            <span class="upload-icon" style="font-size:22px;">🪪</span>
-            <div class="upload-text" style="font-size:13px;"><strong>Click to upload</strong></div>
-            <div class="upload-sub">Front of document</div>
-          </div>
-          <div class="file-preview" id="idFrontPreview"><span>📎</span><span class="file-preview-name" id="idFrontName"></span><button class="file-preview-remove" onclick="removeFile('idFrontFile','idFrontPreview','idFrontZone')" title="Remove">✕</button></div>
-        </div>
-        <div>
-          <div style="font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:6px; font-family:'EB Garamond',serif;">Back Side</div>
-          <div class="upload-zone" id="idBackZone" onclick="document.getElementById('idBackFile').click()">
-            <input type="file" id="idBackFile" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFile('idBackFile','idBackPreview','idBackZone','idBackName')">
-            <span class="upload-icon" style="font-size:22px;">🪪</span>
-            <div class="upload-text" style="font-size:13px;"><strong>Click to upload</strong></div>
-            <div class="upload-sub">Back of document</div>
-          </div>
-          <div class="file-preview" id="idBackPreview"><span>📎</span><span class="file-preview-name" id="idBackName"></span><button class="file-preview-remove" onclick="removeFile('idBackFile','idBackPreview','idBackZone')" title="Remove">✕</button></div>
-        </div>
+      <label>
+        Upload ID Document <span class="req-mark">*</span>
+        <span style="font-style:italic; font-weight:300; text-transform:none; letter-spacing:0; font-size:11px;">(JPG, PNG or PDF · max 5 MB)</span>
+      </label>
+      <div class="upload-zone" id="idZone" onclick="document.getElementById('idFile').click()">
+        <input type="file" id="idFile" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFile('idFile','idPreview','idZone','idName')">
+        <span class="upload-icon">🪪</span>
+        <div class="upload-text"><strong>Click to upload</strong> or drag &amp; drop</div>
+        <div class="upload-sub">Clear photo or scan of your ID document</div>
       </div>
-      <div class="err-msg" id="e-idFile">Please upload both front and back of your ID document.</div>
+      <div class="file-preview" id="idPreview">
+        <span>📎</span>
+        <span class="file-preview-name" id="idName"></span>
+        <button class="file-preview-remove" onclick="removeFile('idFile','idPreview','idZone')" title="Remove">✕</button>
+      </div>
+      <div class="err-msg" id="e-idFile">Please upload your ID document.</div>
     </div>
 
     <hr class="divider">
 
-    <div class="field"><label>PAN Number <span class="opt-badge">Optional</span></label><input type="text" id="panNumber" placeholder="ABCDE1234F" maxlength="10" style="text-transform:uppercase; max-width:220px;"></div>
+    <div class="field">
+      <label>PAN Number <span class="opt-badge">Optional</span></label>
+      <input type="text" id="panNumber" placeholder="ABCDE1234F" maxlength="10" style="text-transform:uppercase; max-width:220px;">
+    </div>
 
     <div class="field">
-      <label>Upload PAN Card <span class="opt-badge">Optional</span> <span style="font-style:italic;font-weight:300;text-transform:none;letter-spacing:0;font-size:11px;">(JPG, PNG or PDF · max 5MB)</span></label>
+      <label>
+        Upload PAN Card <span class="opt-badge">Optional</span>
+        <span style="font-style:italic; font-weight:300; text-transform:none; letter-spacing:0; font-size:11px;">(JPG, PNG or PDF · max 5 MB)</span>
+      </label>
       <div class="upload-zone" id="panZone" onclick="document.getElementById('panFile').click()">
         <input type="file" id="panFile" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFile('panFile','panPreview','panZone','panName')">
         <span class="upload-icon">📄</span>
         <div class="upload-text"><strong>Click to upload</strong> or drag &amp; drop</div>
         <div class="upload-sub">Scanned copy or clear photo of your PAN card</div>
       </div>
-      <div class="file-preview" id="panPreview"><span>📎</span><span class="file-preview-name" id="panName"></span><button class="file-preview-remove" onclick="removeFile('panFile','panPreview','panZone')" title="Remove">✕</button></div>
+      <div class="file-preview" id="panPreview">
+        <span>📎</span>
+        <span class="file-preview-name" id="panName"></span>
+        <button class="file-preview-remove" onclick="removeFile('panFile','panPreview','panZone')" title="Remove">✕</button>
+      </div>
     </div>
 
-    <div class="nav"><button class="btn" onclick="prev()">← Back</button><span class="step-count">Step 4 of 7</span><button class="btn primary" onclick="nextStep(3)">Continue →</button></div>
+    <div class="nav">
+      <button class="btn" onclick="prev()">← Back</button>
+      <span class="step-count">Step 4 of 7</span>
+      <button class="btn primary" onclick="nextStep(3)">Continue →</button>
+    </div>
   </div>
 
   <!-- ======== Step 5: Nominee ======== -->
   <div class="section" id="s4">
-    <div class="section-head"><h2>Nominee Details</h2><p>Emergency contact and next of kin — all fields required</p></div>
+    <div class="section-head">
+      <h2>Partner & Child Information</h2>
+      <p>Emergency contact and next of kin</p>
+    </div>
     <div class="val-summary" id="vs4"></div>
 
-    <div class="field"><label>Full Name <span class="req-mark">*</span></label><input type="text" id="nomName" placeholder="Nominee's full name"><div class="err-msg" id="e-nomName">Nominee's full name is required.</div></div>
+    <div class="field">
+      <label>Full Name <span class="req-mark">*</span></label>
+      <input type="text" id="nomName" placeholder="Nominee's full name">
+      <div class="err-msg" id="e-nomName">Nominee's full name is required.</div>
+    </div>
 
     <div class="field">
       <label>Date of Birth <span class="req-mark">*</span></label>
@@ -503,8 +1142,17 @@
       <div class="err-msg" id="e-nomRelationship">Please select the relationship.</div>
     </div>
 
-    <div class="field"><label>Mobile Number <span class="req-mark">*</span></label><input type="tel" id="nomMobile" placeholder="+91 XXXXX XXXXX"><div class="err-msg" id="e-nomMobile">Nominee's mobile number is required.</div></div>
-    <div class="field"><label>Email Address <span class="req-mark">*</span></label><input type="email" id="nomEmail" placeholder="nominee@example.com"><div class="err-msg" id="e-nomEmail">Please enter a valid email address.</div></div>
+    <div class="field">
+      <label>Mobile Number <span class="req-mark">*</span></label>
+      <input type="tel" id="nomMobile" placeholder="+91 XXXXX XXXXX">
+      <div class="err-msg" id="e-nomMobile">Nominee's mobile number is required.</div>
+    </div>
+
+    <div class="field">
+      <label>Email Address <span class="req-mark">*</span></label>
+      <input type="email" id="nomEmail" placeholder="nominee@example.com">
+      <div class="err-msg" id="e-nomEmail">Please enter a valid email address.</div>
+    </div>
 
     <div class="child-section" id="childSection">
       <div class="child-section-title">Child Details <span class="opt-badge" style="font-size:11px;">Optional</span></div>
@@ -524,13 +1172,19 @@
       <div class="field"><label>Child's Email Address <span class="opt-badge">Optional</span></label><input type="email" id="childEmail" placeholder="child@example.com"></div>
     </div>
 
-    <div class="nav"><button class="btn" onclick="prev()">← Back</button><span class="step-count">Step 5 of 7</span><button class="btn primary" onclick="nextStep(4)">Continue →</button></div>
+    <div class="nav">
+      <button class="btn" onclick="prev()">← Back</button>
+      <span class="step-count">Step 5 of 7</span>
+      <button class="btn primary" onclick="nextStep(4)">Continue →</button>
+    </div>
   </div>
 
   <!-- ======== Step 6: Interests ======== -->
   <div class="section" id="s5">
-    <div class="section-head"><h2>Interests &amp; Preferences</h2><p>Help us personalise your membership experience</p></div>
-    <div class="val-summary" id="vs5"></div>
+    <div class="section-head">
+      <h2>Interests &amp; Preferences</h2>
+      <p>Help us personalise your membership experience</p>
+    </div>
 
     <div class="field">
       <label>Areas of Interest <span class="opt-badge">Optional</span></label>
@@ -546,18 +1200,34 @@
 
     <hr class="divider">
 
-    <div class="field"><label>Dietary Restrictions or Allergies <span class="opt-badge">Optional</span></label><textarea id="dietaryRestrictions" placeholder="E.g. vegetarian, vegan, gluten-free, nut allergy, lactose intolerant…" style="min-height:80px;"></textarea></div>
-    <div class="field"><label>Favourite Cuisines &amp; Dishes <span class="opt-badge">Optional</span></label><textarea id="favouriteCuisines" placeholder="E.g. Italian, Japanese, coastal seafood, wood-fired pizza…" style="min-height:80px;"></textarea></div>
-    <div class="field"><label>Favourite Drinks &amp; Cocktails <span class="opt-badge">Optional</span></label><textarea id="favouriteDrinks" placeholder="E.g. single malt whisky, Negroni, sparkling water, craft beer…" style="min-height:80px;"></textarea></div>
+    <div class="field">
+      <label>Dietary Restrictions or Allergies <span class="opt-badge">Optional</span></label>
+      <textarea id="dietaryRestrictions" placeholder="E.g. vegetarian, vegan, gluten-free, nut allergy, lactose intolerant…"></textarea>
+    </div>
 
-    <hr class="divider">
+    <div class="field">
+      <label>Favourite Cuisines &amp; Dishes <span class="opt-badge">Optional</span></label>
+      <textarea id="favouriteCuisines" placeholder="E.g. Italian, Japanese, coastal seafood, wood-fired pizza…"></textarea>
+    </div>
 
-    <div class="nav"><button class="btn" onclick="prev()">← Back</button><span class="step-count">Step 6 of 7</span><button class="btn primary" onclick="nextStep(5)">Continue →</button></div>
+    <div class="field">
+      <label>Favourite Drinks &amp; Cocktails <span class="opt-badge">Optional</span></label>
+      <textarea id="favouriteDrinks" placeholder="E.g. single malt whisky, Negroni, sparkling water, craft beer…"></textarea>
+    </div>
+
+    <div class="nav">
+      <button class="btn" onclick="prev()">← Back</button>
+      <span class="step-count">Step 6 of 7</span>
+      <button class="btn primary" onclick="nextStep(5)">Continue →</button>
+    </div>
   </div>
 
   <!-- ======== Step 7: Declaration ======== -->
   <div class="section" id="s6">
-    <div class="section-head"><h2>Declaration &amp; Signature</h2><p>Please read carefully and sign below</p></div>
+    <div class="section-head">
+      <h2>Declaration &amp; Signature</h2>
+      <p>Please read carefully and sign below</p>
+    </div>
     <div class="val-summary" id="vs6"></div>
 
     <div class="membership-info-box">
@@ -573,7 +1243,7 @@
     </div>
 
     <div class="field" id="f-declarationCheck">
-      <label class="declaration-check-label" id="declCheckLabel">
+      <label class="declaration-label">
         <input type="checkbox" id="declarationCheck" onchange="handleDeclCheck()">
         <span>By signing this form, I hereby declare that the above information submitted is true and I agree to abide by the House Rules and Membership By-Laws of The Marque.</span>
       </label>
@@ -595,21 +1265,29 @@
         <div class="sig-actions"><button class="sig-btn" onclick="clearCanvas()">Clear</button></div>
       </div>
       <div class="sig-panel" id="sigType">
-        <input type="text" id="sigTypeInput" placeholder="Type your full legal name" style="font-style:italic; font-size:20px; font-family:'EB Garamond',serif;">
+        <input type="text" id="sigTypeInput" placeholder="Type your full legal name" style="font-style:italic; font-size:20px;">
       </div>
       <div class="sig-panel" id="sigUpload">
         <div class="upload-zone" id="sigZone" onclick="document.getElementById('sigFile').click()">
           <input type="file" id="sigFile" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFile('sigFile','sigPreview','sigZone','sigName')">
           <span class="upload-icon">✍️</span>
           <div class="upload-text"><strong>Click to upload</strong> your signature image</div>
-          <div class="upload-sub">JPG, PNG or PDF · max 2MB</div>
+          <div class="upload-sub">JPG, PNG or PDF · max 2 MB</div>
         </div>
-        <div class="file-preview" id="sigPreview"><span>📎</span><span class="file-preview-name" id="sigName"></span><button class="file-preview-remove" onclick="removeFile('sigFile','sigPreview','sigZone')" title="Remove">✕</button></div>
+        <div class="file-preview" id="sigPreview">
+          <span>📎</span>
+          <span class="file-preview-name" id="sigName"></span>
+          <button class="file-preview-remove" onclick="removeFile('sigFile','sigPreview','sigZone')" title="Remove">✕</button>
+        </div>
       </div>
       <div class="err-msg" id="e-sig">Please provide your signature.</div>
     </div>
 
-    <div class="field"><label>Print Name <span class="req-mark">*</span></label><input type="text" id="printName" placeholder="Print your full name"><div class="err-msg" id="e-printName">Please print your full name.</div></div>
+    <div class="field">
+      <label>Print Name <span class="req-mark">*</span></label>
+      <input type="text" id="printName" placeholder="Print your full name">
+      <div class="err-msg" id="e-printName">Please print your full name.</div>
+    </div>
 
     <div class="field">
       <label>Date <span class="req-mark">*</span></label>
@@ -623,7 +1301,11 @@
       <div class="err-msg" id="e-declDate">Please enter the date.</div>
     </div>
 
-    <div class="nav"><button class="btn" onclick="prev()">← Back</button><span class="step-count">Step 7 of 7</span><button class="btn submit" onclick="submitForm()">Submit Application</button></div>
+    <div class="nav">
+      <button class="btn" onclick="prev()">← Back</button>
+      <span class="step-count">Step 7 of 7</span>
+      <button class="btn submit" onclick="submitForm()">Submit Application</button>
+    </div>
   </div>
 
   <!-- Success -->
@@ -635,7 +1317,7 @@
     </div>
   </div>
 
-</div>
+</div><!-- /card -->
 
 <script>
   let cur = 0;
@@ -674,12 +1356,11 @@
     document.getElementById('childSection').classList.toggle('show', val === 'Spouse');
   }
 
-  // ---- Email group: clear error when user types ----
-  function clearEmailGroupError() {
-    document.getElementById('emailOrGroup').classList.remove('invalid-group');
-    document.getElementById('e-emailGroup').classList.remove('show');
-    document.getElementById('email').classList.remove('invalid');
-    document.getElementById('eaEmail').classList.remove('invalid');
+  function clearOrGroupError(groupId, errId) {
+    document.getElementById(groupId).classList.remove('invalid-group');
+    document.getElementById(errId).classList.remove('show');
+    // Also clear invalid on inputs inside the group
+    document.querySelectorAll('#' + groupId + ' input').forEach(el => el.classList.remove('invalid'));
   }
 
   function showErr(id, show) {
@@ -704,7 +1385,7 @@
     document.querySelectorAll('.opt-pill').forEach(p => p.style.borderColor = '');
     document.querySelectorAll('.upload-zone').forEach(z => z.classList.remove('invalid-zone'));
     document.querySelectorAll('.val-summary').forEach(v => { v.classList.remove('show'); v.innerHTML = ''; });
-    document.getElementById('emailOrGroup').classList.remove('invalid-group');
+    document.querySelectorAll('.or-group').forEach(g => g.classList.remove('invalid-group'));
   }
 
   function showSummary(stepIdx, msgs) {
@@ -750,31 +1431,28 @@
     }
 
     if (idx === 2) {
-      // Email OR EA Email — at least one required and valid
+      // Email OR group
       const emailVal = document.getElementById('email').value.trim();
       const eaEmailVal = document.getElementById('eaEmail').value.trim();
+      const emailOk = emailVal.length > 0 && isValidEmail(emailVal);
+      const eaEmailOk = eaEmailVal.length > 0 && isValidEmail(eaEmailVal);
       const emailFilled = emailVal.length > 0;
       const eaFilled = eaEmailVal.length > 0;
 
-      // Validate format if filled
-      const emailFormatOk = !emailFilled || isValidEmail(emailVal);
-      const eaFormatOk = !eaFilled || isValidEmail(eaEmailVal);
-
       if (!emailFilled && !eaFilled) {
-        // Neither filled — group error
         document.getElementById('emailOrGroup').classList.add('invalid-group');
+        document.getElementById('e-emailGroup').textContent = 'Please provide at least one email address.';
         document.getElementById('e-emailGroup').classList.add('show');
         errors.push('Email Address (at least one required)');
       } else {
-        // At least one filled — check format of filled ones
-        if (emailFilled && !emailFormatOk) {
+        if (emailFilled && !emailOk) {
           markInvalid('email', true);
           document.getElementById('emailOrGroup').classList.add('invalid-group');
           document.getElementById('e-emailGroup').textContent = 'Please enter a valid email address.';
           document.getElementById('e-emailGroup').classList.add('show');
           errors.push('Email Address (invalid format)');
         }
-        if (eaFilled && !eaFormatOk) {
+        if (eaFilled && !eaEmailOk) {
           markInvalid('eaEmail', true);
           document.getElementById('emailOrGroup').classList.add('invalid-group');
           document.getElementById('e-emailGroup').textContent = 'Please enter a valid executive assistant email.';
@@ -783,22 +1461,25 @@
         }
       }
 
+      // Phone OR group
+      const mobileVal = document.getElementById('mobile').value.trim();
+      const eaMobileVal = document.getElementById('eaMobile').value.trim();
+
+      if (!mobileVal && !eaMobileVal) {
+        document.getElementById('phoneOrGroup').classList.add('invalid-group');
+        document.getElementById('e-phoneGroup').textContent = 'Please provide at least one phone number.';
+        document.getElementById('e-phoneGroup').classList.add('show');
+        errors.push('Phone Number (at least one required)');
+      }
     }
 
     if (idx === 3) {
       if (!document.querySelector('input[name="idtype"]:checked')) { markRadioInvalid('idtype', true); showErr('idtype', true); errors.push('ID Proof Type'); }
       if (!document.getElementById('idNumber').value.trim()) { markInvalid('idNumber', true); showErr('idNumber', true); errors.push('ID Number'); }
-      const idFrontOk = document.getElementById("idFrontFile").files.length > 0;
-      const idBackOk = document.getElementById("idBackFile").files.length > 0;
-      if (!idFrontOk || !idBackOk) {
-        if (!idFrontOk) document.getElementById("idFrontZone").classList.add("invalid-zone");
-        if (!idBackOk) document.getElementById("idBackZone").classList.add("invalid-zone");
-        const msg = !idFrontOk && !idBackOk ? "Please upload both front and back of your ID document."
-                  : !idFrontOk ? "Please upload the front side of your ID document."
-                  : "Please upload the back side of your ID document.";
-        document.getElementById("e-idFile").textContent = msg;
-        showErr("idFile", true);
-        errors.push("ID Proof Document");
+      if (document.getElementById('idFile').files.length === 0) {
+        document.getElementById('idZone').classList.add('invalid-zone');
+        showErr('idFile', true);
+        errors.push('ID Document');
       }
     }
 
@@ -864,9 +1545,8 @@
     zone.classList.add('has-file');
     zone.classList.remove('invalid-zone');
     zone.style.pointerEvents = 'none';
-    const errKey = (inputId === "idFrontFile" || inputId === "idBackFile") ? "idFile" : inputId;
-    const errEl = document.getElementById("e-" + errKey);
-    if (errEl) errEl.classList.remove('show');
+    const errEl = document.getElementById('e-idFile');
+    if (errEl && (inputId === 'idFile')) errEl.classList.remove('show');
   }
 
   function removeFile(inputId, previewId, zoneId) {
@@ -878,17 +1558,19 @@
     event.stopPropagation();
   }
 
-  ['panZone','idFrontZone','idBackZone','sigZone'].forEach(id => {
+  // Drag & drop for upload zones
+  ['panZone','idZone','sigZone'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
-    el.addEventListener('dragover', e => { e.preventDefault(); el.style.borderColor = 'var(--gold)'; });
+    el.addEventListener('dragover', e => { e.preventDefault(); el.style.borderColor = 'var(--gold-mid)'; });
     el.addEventListener('dragleave', () => { el.style.borderColor = ''; });
     el.addEventListener('drop', e => {
       e.preventDefault(); el.style.borderColor = '';
-      const map = { panZone: 'panFile', idFrontZone: 'idFrontFile', idBackZone: 'idBackFile', sigZone: 'sigFile' };
-      const previewMap = { panZone: 'panPreview', idFrontZone: 'idFrontPreview', idBackZone: 'idBackPreview', sigZone: 'sigPreview' };
-      const nameMap = { panZone: 'panName', idFrontZone: 'idFrontName', idBackZone: 'idBackName', sigZone: 'sigName' };
+      const map = { panZone: 'panFile', idZone: 'idFile', sigZone: 'sigFile' };
+      const previewMap = { panZone: 'panPreview', idZone: 'idPreview', sigZone: 'sigPreview' };
+      const nameMap = { panZone: 'panName', idZone: 'idName', sigZone: 'sigName' };
       const fileInput = document.getElementById(map[id]);
+      if (!fileInput) return;
       const dt = new DataTransfer();
       dt.items.add(e.dataTransfer.files[0]);
       fileInput.files = dt.files;
@@ -916,7 +1598,7 @@
     canvas.height = 140 * dpr;
     const ctx = canvas.getContext('2d');
     ctx.scale(dpr, dpr);
-    ctx.strokeStyle = '#1a1814';
+    ctx.strokeStyle = '#18160f';
     ctx.lineWidth = 1.8;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
